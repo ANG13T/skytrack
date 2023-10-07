@@ -13,6 +13,8 @@ Find information about any airplane given a specific identifier
 - enter identifier of aircraft or registration or tail number
 
 
+https://pyflightdata.readthedocs.io/en/latest/pyflightdata.html
+
 
 
 # APIs Used
@@ -33,5 +35,9 @@ https://planefinder.net/endpoints/update.php'\
 
 https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
-
 Wikipedia?
+
+# Set Up
+Create an account using FlightRadar
+https://www.flightradar24.com/premium/signup
+
