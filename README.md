@@ -41,3 +41,9 @@ Wikipedia?
 Create an account using FlightRadar
 https://www.flightradar24.com/premium/signup
 
+
+
+# Data Sources
+
+[https://www.icao.int/publications/doc8643/pages/search.aspx](https://www.icao.int/publications/doc8643/pages/search.aspx)
+This is the most up to date JSON data file retrieved by the official ICAO Aircraft Type Designators listings webpage
