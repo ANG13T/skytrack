@@ -1,7 +1,15 @@
-#  This manages the tail and ICAO condifgurations of this tool
+import sys
 
-def icao_to_tail():
-    return
+if __name__ == "__main__":
+    val = sys.argv[1].upper()
+    
+    if val[0] == 'N': # N-Number
+        res = n_to_icao(val)
+    elif val[0] == 'A': # icao
+        res = icao_to_n(val)
+    else:
+        invalid_parameter()
 
-def tail_to_icao():
-    return
+    if res is None:
+        invalid_parameter()
+    print(res)

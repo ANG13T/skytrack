@@ -47,3 +47,35 @@ https://www.flightradar24.com/premium/signup
 
 [https://www.icao.int/publications/doc8643/pages/search.aspx](https://www.icao.int/publications/doc8643/pages/search.aspx)
 This is the most up to date JSON data file retrieved by the official ICAO Aircraft Type Designators listings webpage
+
+
+# Information
+
+1. necessary conversions
+Convert USA hex to ICAO
+
+ICAO and Tail Numbers follow a mapping system like the following:
+
+ICAO address	N-Number
+a00001	N1
+a00002	N1A
+a00003	N1AA
+
+
+https://opensky-network.org/datasets/metadata/aircraftDatabase.csv
+
+
+# Disclaimer
+Only works for United States aircraft registrations
+The USA hex to ICAO tail number only works for USA registered aircraft
+
+Use the following to learn about Aircraft registration numbers:
+https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/special_nnumbers
+
+
+
+
+# Features 
+- tail to ICAO
+- get plane information
+- generate plane report
