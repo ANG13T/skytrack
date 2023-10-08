@@ -39,7 +39,7 @@ def generate_suffix(offset):
     """
     if offset == 0:
         return ''
-    char0 = ALPHABET[int(offset - 1) / (len(ALPHABET) + 1)]
+    char0 = ALPHABET[int(int(offset - 1) / (len(ALPHABET) + 1))]
     mod = (offset - 1) % (len(ALPHABET) + 1)
 
     if mod == 0:
@@ -78,9 +78,6 @@ def compute_offset_from_suffix(suffix):
         count += ALPHABET.index(suffix[1]) + 1
 
     return count
-
-def icao_to_tail():
-    return
 
 def tail_to_icao(tail_value):
     tail_value = tail_value.upper()
@@ -131,9 +128,9 @@ def tail_to_icao(tail_value):
 def print_tail_to_icao(tail_value):
     generated_value = tail_to_icao(tail_value)
     if generated_value != None:
-        console.print(f"\n[bold][green] ICAO Designation: {generated_value} [/green][/bold]")
+        console.print(f"\n[bold][green]ICAO Designation: {generated_value} [/green][/bold]")
     else:
-        console.print(f"\n[bold][red] INVALID TAIL NUMBER [/red][/bold]")
+        console.print(f"\n[bold][red]INVALID TAIL NUMBER [/red][/bold]")
 
 def icao_to_tail(icao_value):
     icao_value = icao_value.upper()
@@ -146,7 +143,6 @@ def icao_to_tail(icao_value):
             if char not in HEX_VALUES:
                 is_valid = False
                 break
-    
     if is_valid == False:
         return None
     
@@ -157,11 +153,11 @@ def icao_to_tail(icao_value):
         return result
     
     digit_1 = int(i / SEGMENT1_SIZE) + 1
-    mod_1 = 1 % digit_1
+    mod_1 = i % SEGMENT1_SIZE
     result += str(digit_1)
 
     if mod_1 < SUFFIX_SIZE:
-        return generate_suffix(mod_1)
+        return result + generate_suffix(mod_1)
     
     mod_1 -= SUFFIX_SIZE
     digit_2 = int(mod_1 / SEGMENT2_SIZE)
@@ -186,13 +182,13 @@ def icao_to_tail(icao_value):
 
     if mod_4 == 0:
         return result
-    
+
     return result + CHARACTERS[mod_4 - 1]
 
     
 def print_icao_to_tail(icao_value):
     generated_value = icao_to_tail(icao_value)
     if generated_value != None:
-        console.print(f"\n[bold][green] Tail Number: {generated_value} [/green][/bold]")
+        console.print(f"\n[bold][green]Tail Number: {generated_value} [/green][/bold]")
     else:
-        console.print(f"\n[bold][red] INVALID ICAO DESIGNATION [/red][/bold]")
+        console.print(f"\n[bold][red]INVALID ICAO DESIGNATION [/red][/bold]")
