@@ -1,41 +1,25 @@
-from simple_term_menu import TerminalMenu
-from time import sleep
-# from modules.decoder import *
+import os
+from dotenv import load_dotenv
 from rich.console import Console
 
 console = Console()
 
 
-def main_menu():
-    main_menu.options = [
-        "🛰 Decode NOAA Recording",
-        None,
-        "📡 Resample NOAA Recording",
-        None,
-        "Exit Tool"
-    ]
-    main_menu.terminal_menu = TerminalMenu(
-        main_menu.options,
-        title="",
-        menu_cursor=" ❯ ",
-        menu_cursor_style=("fg_blue", "bold"),
-        menu_highlight_style=("fg_cyan", "underline", "bold"),
-    )
-    main_menu.menu_entry_index = main_menu.terminal_menu.show() / 2
-
 try:
-    main_menu()
+    def import_env():
+        # load_dotenv()
+        # N2YO_Key = os.getenv('N2YO_API')
+        # if N2YO_Key == "API_KEY_HERE":
+        #     console.print("[bold blue]Put N2YO API Key in .env file[/]")
+        #     return False
+        # else:
+        #     return True
+        return True
+
+    if import_env():
+        from modules.menu import menu
+
 except KeyboardInterrupt:
-    print("\n")
-    console.print("[bold][cyan] Exiting skytrack [/cyan][/bold]")
-    sleep(1)
-
-except TypeError:
-    # os.system("clear")
-    console.print("\n[bold][red] INVALID COMMAND [/red][/bold]")
-    # run_again()
-
-
-
-main_banner()
-
+    os.system("clear")
+    console.print("\n")
+    console.print("[bold][blue] Exiting...[/blue][/bold]")

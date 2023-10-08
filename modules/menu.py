@@ -2,7 +2,7 @@ from modules import *
 from time import sleep
 from simple_term_menu import TerminalMenu
 from modules.rerun import rerun
-from modules.about import about
+# from modules.about import about
 from rich.console import Console
 from modules.banner import *
 import os
@@ -14,17 +14,15 @@ try:
 
     def menu():
         menu.options = [
-            "🌦  Weather Forecasts and Alerts",
+            "🛫 Extract Information about Plane",
             None,
-            "🛰  Pass Predictor",
+            "📘  Generate Flight Information PDF",
             None,
-            "📡  APT Image Decoder",
-            None,
-            "🌎  Meterological Image Analysis",
+            "🛬 Tail Number and ICAO Conversion",
             None,
             "ℹ️  About and Usage",
             None,
-            "Exit ClimaCast",
+            "Exit skytrack",
         ]
 
         terminal_menu = TerminalMenu(
@@ -53,11 +51,11 @@ try:
         #     import modules.imagery_menu
         #     rerun()
 
-        # if menu.menu_entry_index == 4:
+        # if menu.menu_entry_index == 3:
         #     about()
         #     rerun()
         
-        if menu.menu_entry_index == 5:
+        if menu.menu_entry_index == 4:
             console.print("[bold][blue] Exiting...[/blue][/bold]")
             sleep(1)
 
