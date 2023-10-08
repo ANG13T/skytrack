@@ -16,7 +16,7 @@ try:
         menu.options = [
             "🛫 Extract Information about Plane",
             None,
-            "📘  Generate Flight Information PDF",
+            "📘 Generate Flight Information PDF",
             None,
             "🛬 Tail Number and ICAO Conversion",
             None,

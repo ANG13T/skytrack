@@ -25,7 +25,8 @@ try:
         )
         run_icao_tail.menu_entry_index = run_icao_tail.terminal_menu.show() / 2
         if run_icao_tail.menu_entry_index == 0:
-            tail_to_icao()
+            value = console.input("Enter [bold blue]Tail Number[/]: ")
+            print_tail_to_icao(value)
             
         if run_icao_tail.menu_entry_index == 1:
             icao_to_tail()
