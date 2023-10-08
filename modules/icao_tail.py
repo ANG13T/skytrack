@@ -28,6 +28,24 @@ def generate_icao(prefix, number):
     else:
         return prefix + '0' * (ICAO_LENGTH-total_length) + suffix
 
+def generate_suffix(offset):
+    """
+    Given an offset amount, return the suffix value
+    0 -> ''
+    1 -> 'A'
+    2 -> 'AA'
+    3 -> 'AB'
+    4 -> 'AC'
+    """
+    if offset == 0:
+        return ''
+    char0 = ALPHABET[int(offset - 1) / (len(ALPHABET) + 1)]
+    mod = (offset - 1) % (len(ALPHABET) + 1)
+
+    if mod == 0:
+        return char0
+    
+    return char0 + ALPHABET[mod - 1]
 
 def compute_offset_from_suffix(suffix):
     """
@@ -116,3 +134,65 @@ def print_tail_to_icao(tail_value):
         console.print(f"\n[bold][green] ICAO Designation: {generated_value} [/green][/bold]")
     else:
         console.print(f"\n[bold][red] INVALID TAIL NUMBER [/red][/bold]")
+
+def icao_to_tail(icao_value):
+    icao_value = icao_value.upper()
+    is_valid = True
+
+    if icao_value[0] != 'A' or len(icao_value) != ICAO_LENGTH:
+        is_valid = False
+    else:
+        for char in icao_value:
+            if char not in HEX_VALUES:
+                is_valid = False
+                break
+    
+    if is_valid == False:
+        return None
+    
+    result = "N"
+
+    i = int(icao_value[1:], base = 16) - 1
+    if i < 0:
+        return result
+    
+    digit_1 = int(i / SEGMENT1_SIZE) + 1
+    mod_1 = 1 % digit_1
+    result += str(digit_1)
+
+    if mod_1 < SUFFIX_SIZE:
+        return generate_suffix(mod_1)
+    
+    mod_1 -= SUFFIX_SIZE
+    digit_2 = int(mod_1 / SEGMENT2_SIZE)
+    mod_2 = mod_1 % SEGMENT2_SIZE
+    result += str(digit_2)
+
+    if mod_2 < SUFFIX_SIZE:
+        return result + generate_suffix(mod_2)
+    
+    mod_2 -= SUFFIX_SIZE
+    digit_3 = int(mod_2 / SEGMENT3_SIZE)
+    mod_3 = mod_2 % SEGMENT3_SIZE
+    result += str(digit_3)
+
+    if mod_3 < SUFFIX_SIZE:
+        return result + generate_suffix(mod_3)
+    
+    mod_3 -= SUFFIX_SIZE
+    digit_4 = int(mod_3 / SEGMENT4_SIZE)
+    mod_4 = mod_3 % SEGMENT4_SIZE
+    result += str(digit_4)
+
+    if mod_4 == 0:
+        return result
+    
+    return result + CHARACTERS[mod_4 - 1]
+
+    
+def print_icao_to_tail(icao_value):
+    generated_value = icao_to_tail(icao_value)
+    if generated_value != None:
+        console.print(f"\n[bold][green] Tail Number: {generated_value} [/green][/bold]")
+    else:
+        console.print(f"\n[bold][red] INVALID ICAO DESIGNATION [/red][/bold]")
