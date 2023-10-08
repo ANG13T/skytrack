@@ -113,6 +113,6 @@ def tail_to_icao(tail_value):
 def print_tail_to_icao(tail_value):
     generated_value = tail_to_icao(tail_value)
     if generated_value != None:
-        console.print(f"\n[bold][red] ICAO Designation: {generated_value} [/red][/bold]")
+        console.print(f"\n[bold][green] ICAO Designation: {generated_value} [/green][/bold]")
     else:
         console.print(f"\n[bold][red] INVALID TAIL NUMBER [/red][/bold]")

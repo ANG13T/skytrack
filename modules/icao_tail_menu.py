@@ -2,7 +2,7 @@ from simple_term_menu import TerminalMenu
 from time import sleep
 from modules.icao_tail import *
 from rich.console import Console
-from modules.menu import banner, menu_print, rerun
+from modules.menu import rerun
 import os
 
 console = Console()
@@ -40,7 +40,4 @@ except KeyboardInterrupt:
 
 except TypeError:
     os.system("clear")
-    banner()
-    menu_print()
-    console.print(f"\n[bold][red] INVALID COMMAND [/red][/bold]")
     rerun()

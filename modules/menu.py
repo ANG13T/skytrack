@@ -47,9 +47,9 @@ try:
         #     import modules.decoder_menu
         #     rerun()
 
-        # if menu.menu_entry_index == 3:
-        #     import modules.imagery_menu
-        #     rerun()
+        if menu.menu_entry_index == 2:
+            import modules.icao_tail_menu
+            rerun()
 
         # if menu.menu_entry_index == 3:
         #     about()
