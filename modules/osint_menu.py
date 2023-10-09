@@ -1,6 +1,7 @@
 from simple_term_menu import TerminalMenu
 from time import sleep
 from modules.icao_tail import *
+from modules.osint import *
 from rich.console import Console
 from modules.menu import rerun
 import os
@@ -26,11 +27,11 @@ try:
         run_icao_tail.menu_entry_index = run_icao_tail.terminal_menu.show() / 2
         if run_icao_tail.menu_entry_index == 0:
             value = console.input("Enter [bold blue]Tail Number[/]: ")
-            print_tail_to_icao(value)
+            osint_from_tail(value)
             
         if run_icao_tail.menu_entry_index == 1:
             value = console.input("Enter [bold blue]ICAO Designation[/]: ")
-            print_icao_to_tail(value)
+            osint_from_icao(value)
         
     run_icao_tail()
 

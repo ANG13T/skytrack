@@ -1,1 +1,2 @@
 .env
+./modules/__pycache__/*

@@ -79,3 +79,7 @@ https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_regist
 
 # Tail to ICAO Designation Coversion
 ICAO Designations are represented by hexadecimal and have a fixed length of 6. This tool only supports U.S. ICAO designations which are denoted by the start letter 'a'. 
+
+
+TODO: 
+add some kind of verification mechanisms

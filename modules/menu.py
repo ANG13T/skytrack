@@ -36,7 +36,7 @@ try:
         menu.menu_entry_index = terminal_menu.show()  / 2
 
         if menu.menu_entry_index == 0:
-            import modules.weather_menu
+            import modules.osint_menu
             rerun()
 
         # if menu.menu_entry_index == 1:

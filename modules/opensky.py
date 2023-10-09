@@ -1,7 +1,7 @@
 import os
 import requests
 import csv
-from aircraft import Aircraft
+from modules.aircraft import Aircraft
 
 def get_opensky_data(tail_value):
     print("Retrieving Data from Open Sky")

@@ -42,3 +42,4 @@ class Aircraft:
                 self.icao, self.tail_n,
                 self.call, (self.latitude, self.longitude), 
                 self.altitude, self.notes)
+    
