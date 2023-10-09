@@ -3,18 +3,75 @@ import requests
 import csv
 from modules.aircraft import Aircraft
 
+"""
+Information Derived from Open Sky 
+Data Fields (number = 27)
+
+icao24: String - Unique identifier assigned by the International Civil Aviation Organization (ICAO) to the aircraft.
+
+registration: String - Aircraft registration number.
+
+manufacturericao: String - ICAO code for the aircraft manufacturer.
+
+manufacturername: String - Name of the aircraft manufacturer.
+
+model: String - Model of the aircraft.
+
+typecode: String - Type code associated with the aircraft.
+
+serialnumber: String - Serial number of the aircraft.
+
+linenumber: String - Line number of the aircraft.
+
+icaoaircrafttype: String - ICAO aircraft type code.
+
+operator: String - Company or entity that operates the aircraft.
+
+operatorcallsign: String - Callsign used by the operator.
+
+operatoricao: String - ICAO code of the operator.
+
+operatoriata: String - IATA code of the operator.
+
+owner: String - Owner of the aircraft.
+
+testreg: String - Test registration information.
+
+registered: String (Date format, e.g., "2027-01-31") - Date when the aircraft was registered.
+
+reguntil: String (Date format, e.g., "2027-01-31") - Date until which the registration is valid.
+
+status: String - Current status of the aircraft.
+
+built: String (Year, e.g., "1967") - Year when the aircraft was built.
+
+firstflightdate: String (Date format, e.g., "1967-01-01") - Date of the first flight of the aircraft.
+
+seatconfiguration: String - Configuration of seats in the aircraft.
+
+engines: String - Information about the aircraft's engines.
+
+modes: String - Information about the aircraft's modes.
+
+adsb: String ("true" or "false") - ADS-B (Automatic Dependent Surveillance–Broadcast) status.
+
+acars: String ("true" or "false") - ACARS (Aircraft Communications Addressing and Reporting System) status.
+
+notes: String - Additional notes or comments.
+
+categoryDescription: String - Description of the aircraft category.
+"""
+
+
+
 def get_opensky_data(tail_value):
     print("Retrieving Data from Open Sky")
     headers = {
-            'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'\
-                    'Information at: https://github.com/ANG13T/skytrack'
+        'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'\
+        'Information at: https://github.com/ANG13T/skytrack'
     }
 
-    if os.path.exists('/tmp/opensky.cache') \
-            and os.stat("/tmp/opensky.cache").st_size != 0:
-        print('[*] File exists. Do not download again')
-
-    else:
+    if not os.path.exists('/tmp/opensky.cache') or os.stat("/tmp/opensky.cache").st_size == 0:
         r = requests.get(
                 'https://opensky-network.org/datasets/metadata/aircraftDatabase.csv',
                 stream=True,
@@ -33,16 +90,19 @@ def get_opensky_data(tail_value):
             print(r.status_code)
 
     with open('/tmp/opensky.cache', 'r') as f:
-        parsed_content = csv.reader(f)
-        for line in parsed_content:
+        result = csv.reader(f)
+        
+        for line in result:
             if tail_value in line:
-                # Aircraft infos
+
                 icao            = line[0]
                 manufacturer    = line[3]
                 msn             = line[6]
-                # Owner infos
                 owner           = line[13]
-                return Aircraft(tail_value, 
-                            icao=icao,
-                            manufacturer=manufacturer,
-                            msn=msn),  
+
+                return Aircraft(
+                    tail_value, 
+                    icao=icao,
+                    manufacturer=manufacturer,
+                    msn=msn
+                )

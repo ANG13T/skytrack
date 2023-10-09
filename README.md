@@ -83,3 +83,13 @@ ICAO Designations are represented by hexadecimal and have a fixed length of 6. T
 
 TODO: 
 add some kind of verification mechanisms
+
+
+- make a web server version
+- deploy the web server version
+
+https://pyfpdf.readthedocs.io/en/latest/
+
+
+Jinja2 and FPDF:
+https://stackoverflow.com/questions/44054938/python-jinja2-putting-all-html-from-python-into-one-pdf-rather-than-multipl
