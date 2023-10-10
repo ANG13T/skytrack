@@ -26,8 +26,8 @@ https://www.jetphotos.com/photo/keyword/N450FE
 
 https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
-"https://registry.faa.gov/AircraftInquiry/Search/NNumberResult?nNumberTxt="+tail_n
 
+faa registry
 
 wikipedia (done)
 
