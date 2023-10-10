@@ -71,7 +71,7 @@ def retrieve_value(line, val):
     return None
 
 
-def get_opensky_data(tail_value):
+def get_opensky_data(aircraft, tail_value):
     print("Retrieving Data from Open Sky")
     headers = {
         'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'\
@@ -98,7 +98,7 @@ def get_opensky_data(tail_value):
                 print('\r[*] Done loading !')
         else:
             print(r.status_code)
-    
+
     with open(cache_path, 'r') as f:
         result = csv.reader(f)
         for line in result:
@@ -106,34 +106,36 @@ def get_opensky_data(tail_value):
 
                 print(tail_value)
 
-                aircraft = Aircraft(
-                    icao24 = retrieve_value(tail_value, 0),
-                    registration = retrieve_value(tail_value, 1),
-                    manufacturer_icao = retrieve_value(tail_value, 2),
-                    manufacturer_name = retrieve_value(tail_value, 3),
-                    model = retrieve_value(tail_value, 4),
-                    type_code = retrieve_value(tail_value, 5),
-                    serial_number = retrieve_value(tail_value, 6),
-                    line_number = retrieve_value(tail_value, 7),
-                    icao_aircraft_type = retrieve_value(tail_value, 8),
-                    operator = retrieve_value(tail_value, 9),
-                    operator_callsign = retrieve_value(tail_value, 10),
-                    operator_icao = retrieve_value(tail_value, 11),
-                    operator_iata = retrieve_value(tail_value, 12),
-                    owner = retrieve_value(tail_value, 13),
-                    test_registration = retrieve_value(tail_value, 14),
-                    registered = retrieve_value(tail_value, 15),
-                    reg_valid_until = retrieve_value(tail_value, 16),
-                    status = retrieve_value(tail_value, 17),
-                    built = retrieve_value(tail_value, 18),
-                    first_flight_date = retrieve_value(tail_value, 19),
-                    seat_configuration = retrieve_value(tail_value, 20),
-                    engines = retrieve_value(tail_value, 21),
-                    modes = retrieve_value(tail_value, 22),
-                    adsb = retrieve_value(tail_value, 23),
-                    acars = retrieve_value(tail_value, 24),
-                    notes = retrieve_value(tail_value, 25),
-                    category_description = retrieve_value(tail_value, 26)
-                )
+                aircraft.ICAO24 = retrieve_value(line, 0)
+                aircraft.Registration = retrieve_value(line, 1)
+                aircraft.Manufacturer_ICAO = retrieve_value(line, 2)
+                aircraft.Manufacturer_Name = retrieve_value(line, 3)
+                aircraft.Model = retrieve_value(line, 4)
+                aircraft.Type_Code = retrieve_value(line, 5)
+                aircraft.Serial_Number = retrieve_value(line, 6)
+                aircraft.Line_Number = retrieve_value(line, 7)
+                aircraft.ICAO_Aircraft_Type = retrieve_value(line, 8)
+                aircraft.Operator = retrieve_value(line, 9)
+                aircraft.Operator_Callsign = retrieve_value(line, 10)
+                aircraft.Operator_ICAO = retrieve_value(line, 11)
+                aircraft.Operator_IATA = retrieve_value(line, 12)
+                aircraft.Owner = retrieve_value(line, 13)
+                aircraft.Test_Registration = retrieve_value(line, 14)
+                aircraft.Registered = retrieve_value(line, 15)
+                aircraft.Registration_Valid_Until = retrieve_value(line, 16)
+                aircraft.Status = retrieve_value(line, 17)
+                aircraft.Built = retrieve_value(line, 18)
+                aircraft.First_Flight_Date = retrieve_value(line, 19)
+                aircraft.Seat_Configuration = retrieve_value(line, 20)
+                aircraft.Engines = retrieve_value(line, 21)
+                aircraft.Modes = retrieve_value(line, 22)
+                aircraft.ADSB = retrieve_value(line, 23)
+                aircraft.ACARS = retrieve_value(line, 24)
+                aircraft.Notes = retrieve_value(line, 25)
+                aircraft.Category_Description = retrieve_value(line, 26)
 
                 aircraft.print()
+
+                return aircraft
+
+    return aircraft

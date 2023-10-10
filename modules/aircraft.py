@@ -32,7 +32,8 @@ field_names = [
     "ADSB",
     "ACARS",
     "Notes",
-    "Category Description"
+    "Category Description",
+    "Wiki Link"
 ]
 
 class Aircraft:
@@ -63,7 +64,8 @@ class Aircraft:
         adsb = None,
         acars = None,
         notes = None,
-        category_description = None
+        category_description = None,
+        wiki_link = None
         ):
         self.ICAO24 = icao24
         self.Registration = registration
@@ -92,11 +94,14 @@ class Aircraft:
         self.ACARS = acars
         self.Notes = notes
         self.Category_Description = category_description
+        self.Wiki_Link = wiki_link
 
     def print(self):
         obj = self.__dict__
+        count = 0
         for key, value in obj.items():
-            print(f"{key}: {value}")
+            print(f"{field_names[count]}: {value}")
+            count += 1
 
 
 # class Aircraft:

@@ -28,12 +28,13 @@ https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
 "https://registry.faa.gov/AircraftInquiry/Search/NNumberResult?nNumberTxt="+tail_n
 
-r = requests.get('https://commons.wikimedia.org/wiki/Category:{}_(aircraft)'.format(tail_n))
+
+wikipedia (done)
 
 opensky (done)
 
 Total: 9
-Done: 1
+Done: 2
 
 # Set Up
 Create an account using FlightRadar
