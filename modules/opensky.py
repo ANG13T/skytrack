@@ -65,6 +65,12 @@ categoryDescription: String - Description of the aircraft category.
 
 cache_path = format_file_name("./tmp/opensky.cache")
 
+def retrieve_value(line, val):
+    if val <= len(line) - 1:
+        return line[val]
+    return None
+
+
 def get_opensky_data(tail_value):
     print("Retrieving Data from Open Sky")
     headers = {
@@ -92,20 +98,42 @@ def get_opensky_data(tail_value):
                 print('\r[*] Done loading !')
         else:
             print(r.status_code)
-
+    
     with open(cache_path, 'r') as f:
         result = csv.reader(f)
         for line in result:
             if tail_value in line:
 
-                icao            = line[0]
-                manufacturer    = line[3]
-                msn             = line[6]
-                owner           = line[13]
+                print(tail_value)
 
-                return Aircraft(
-                    tail_value,
-                    icao=icao,
-                    manufacturer=manufacturer,
-                    msn=msn
+                aircraft = Aircraft(
+                    icao24 = retrieve_value(tail_value, 0),
+                    registration = retrieve_value(tail_value, 1),
+                    manufacturer_icao = retrieve_value(tail_value, 2),
+                    manufacturer_name = retrieve_value(tail_value, 3),
+                    model = retrieve_value(tail_value, 4),
+                    type_code = retrieve_value(tail_value, 5),
+                    serial_number = retrieve_value(tail_value, 6),
+                    line_number = retrieve_value(tail_value, 7),
+                    icao_aircraft_type = retrieve_value(tail_value, 8),
+                    operator = retrieve_value(tail_value, 9),
+                    operator_callsign = retrieve_value(tail_value, 10),
+                    operator_icao = retrieve_value(tail_value, 11),
+                    operator_iata = retrieve_value(tail_value, 12),
+                    owner = retrieve_value(tail_value, 13),
+                    test_registration = retrieve_value(tail_value, 14),
+                    registered = retrieve_value(tail_value, 15),
+                    reg_valid_until = retrieve_value(tail_value, 16),
+                    status = retrieve_value(tail_value, 17),
+                    built = retrieve_value(tail_value, 18),
+                    first_flight_date = retrieve_value(tail_value, 19),
+                    seat_configuration = retrieve_value(tail_value, 20),
+                    engines = retrieve_value(tail_value, 21),
+                    modes = retrieve_value(tail_value, 22),
+                    adsb = retrieve_value(tail_value, 23),
+                    acars = retrieve_value(tail_value, 24),
+                    notes = retrieve_value(tail_value, 25),
+                    category_description = retrieve_value(tail_value, 26)
                 )
+
+                aircraft.print()

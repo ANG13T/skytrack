@@ -30,10 +30,10 @@ https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
 r = requests.get('https://commons.wikimedia.org/wiki/Category:{}_(aircraft)'.format(tail_n))
 
-opensky
+opensky (done)
 
 Total: 9
-Done: 0
+Done: 1
 
 # Set Up
 Create an account using FlightRadar
