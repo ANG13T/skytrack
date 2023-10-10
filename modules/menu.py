@@ -1,10 +1,10 @@
 from modules import *
 from time import sleep
-from simple_term_menu import TerminalMenu
 from modules.rerun import rerun
 # from modules.about import about
 from rich.console import Console
 from modules.banner import *
+from modules.option import *
 import os
 
 console = Console()
@@ -15,27 +15,26 @@ try:
     def menu():
         menu.options = [
             "🛫 Extract Information about Plane",
-            None,
             "📘 Generate Flight Information PDF",
-            None,
             "🛬 Tail Number and ICAO Conversion",
-            None,
             "ℹ️  About and Usage",
-            None,
             "Exit skytrack",
         ]
 
-        terminal_menu = TerminalMenu(
-            menu.options,
-            title="",
-            menu_cursor=" ❯ ",
-            menu_cursor_style=("fg_blue", "bold"),
-            menu_highlight_style=("fg_cyan", "underline", "bold"),
-            skip_empty_entries=True
-        )
-        menu.menu_entry_index = terminal_menu.show()  / 2
+        option = generate_option()
 
-        if menu.menu_entry_index == 0:
+        # terminal_menu = TerminalMenu(
+        #     menu.options,
+        #     title="",
+        #     menu_cursor=" ❯ ",
+        #     menu_cursor_style=("fg_blue", "bold"),
+        #     menu_highlight_style=("fg_cyan", "underline", "bold"),
+        #     skip_empty_entries=True
+        # )
+        # menu.menu_entry_index = terminal_menu.show()  / 2
+
+
+        if option == 0:
             import modules.osint_menu
             rerun()
 
@@ -47,15 +46,14 @@ try:
         #     import modules.decoder_menu
         #     rerun()
 
-        if menu.menu_entry_index == 2:
+        if option == 2:
             import modules.icao_tail_menu
             rerun()
 
         # if menu.menu_entry_index == 3:
         #     about()
         #     rerun()
-        
-        if menu.menu_entry_index == 4:
+        if option == 4:
             console.print("[bold][blue] Exiting...[/blue][/bold]")
             sleep(1)
 

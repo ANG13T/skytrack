@@ -1,7 +1,7 @@
-from simple_term_menu import TerminalMenu
 from time import sleep
 from modules.icao_tail import *
 from modules.osint import *
+from modules.option import generate_option
 from rich.console import Console
 from modules.menu import rerun
 import os
@@ -12,24 +12,17 @@ try:
     def run_icao_tail():
         run_icao_tail.options = [
             "🛫  Input Tail Number",
-            None,
             "🛬  Input ICAO Designator",
-            None,
             "Back to Main Menu"
         ]
-        run_icao_tail.terminal_menu = TerminalMenu(
-            run_icao_tail.options,
-            title="",
-            menu_cursor=" ❯ ",
-            menu_cursor_style=("fg_blue", "bold"),
-            menu_highlight_style=("fg_cyan", "underline", "bold"),
-        )
-        run_icao_tail.menu_entry_index = run_icao_tail.terminal_menu.show() / 2
-        if run_icao_tail.menu_entry_index == 0:
+        
+        option = generate_option(run_icao_tail.options)
+
+        if option == 0:
             value = console.input("Enter [bold blue]Tail Number[/]: ")
             osint_from_tail(value)
             
-        if run_icao_tail.menu_entry_index == 1:
+        if option == 1:
             value = console.input("Enter [bold blue]ICAO Designation[/]: ")
             osint_from_icao(value)
         

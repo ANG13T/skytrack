@@ -91,7 +91,6 @@ def get_opensky_data(tail_value):
 
     with open('/tmp/opensky.cache', 'r') as f:
         result = csv.reader(f)
-        
         for line in result:
             if tail_value in line:
 
@@ -101,7 +100,7 @@ def get_opensky_data(tail_value):
                 owner           = line[13]
 
                 return Aircraft(
-                    tail_value, 
+                    tail_value,
                     icao=icao,
                     manufacturer=manufacturer,
                     msn=msn
