@@ -24,6 +24,8 @@ https://aviationstack.com/documentation
 
 https://www.jetphotos.com/photo/keyword/N450FE
 
+jet photos (scrape 3 photos)
+
 https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
 
