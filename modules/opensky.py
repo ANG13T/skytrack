@@ -2,6 +2,7 @@ import os
 import requests
 import csv
 from modules.aircraft import Aircraft
+from modules.file_formatter import format_file_name
 
 """
 Information Derived from Open Sky 
@@ -62,7 +63,7 @@ notes: String - Additional notes or comments.
 categoryDescription: String - Description of the aircraft category.
 """
 
-
+cache_path = format_file_name("./tmp/opensky.cache")
 
 def get_opensky_data(tail_value):
     print("Retrieving Data from Open Sky")
@@ -71,14 +72,17 @@ def get_opensky_data(tail_value):
         'Information at: https://github.com/ANG13T/skytrack'
     }
 
-    if not os.path.exists('/tmp/opensky.cache') or os.stat("/tmp/opensky.cache").st_size == 0:
+    if not os.path.exists(cache_path) or os.stat(cache_path).st_size == 0:
         r = requests.get(
                 'https://opensky-network.org/datasets/metadata/aircraftDatabase.csv',
                 stream=True,
                 headers=headers)
 
         if r.status_code == 200:
-            with open('/tmp/opensky.cache', 'wb') as f: 
+            if not os.path.exists(os.path.dirname(cache_path)):
+                os.makedirs(os.path.dirname(cache_path))
+
+            with open(cache_path, 'wb') as f: 
                 total_l  = int(r.headers.get('content-length'))
                 dl       = 0
                 for data in r.iter_content(chunk_size=8192*4):
@@ -89,7 +93,7 @@ def get_opensky_data(tail_value):
         else:
             print(r.status_code)
 
-    with open('/tmp/opensky.cache', 'r') as f:
+    with open(cache_path, 'r') as f:
         result = csv.reader(f)
         for line in result:
             if tail_value in line:
