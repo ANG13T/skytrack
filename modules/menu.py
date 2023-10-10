@@ -23,23 +23,11 @@ try:
 
         option = generate_option(menu.options)
 
-        print("generated option")
-
-        # terminal_menu = TerminalMenu(
-        #     menu.options,
-        #     title="",
-        #     menu_cursor=" ❯ ",
-        #     menu_cursor_style=("fg_blue", "bold"),
-        #     menu_highlight_style=("fg_cyan", "underline", "bold"),
-        #     skip_empty_entries=True
-        # )
-        # menu.menu_entry_index = terminal_menu.show()  / 2
-
         if option == None:
             rerun()
             return
 
-        if option == 0:
+        if option == 1:
             import modules.osint_menu
             rerun()
 
@@ -51,14 +39,14 @@ try:
         #     import modules.decoder_menu
         #     rerun()
 
-        if option == 2:
+        if option == 3:
             import modules.icao_tail_menu
             rerun()
 
         # if menu.menu_entry_index == 3:
         #     about()
         #     rerun()
-        if option == 4:
+        if option == 5:
             console.print("[bold][blue] Exiting...[/blue][/bold]")
             sleep(1)
 
