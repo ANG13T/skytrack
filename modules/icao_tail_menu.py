@@ -17,11 +17,11 @@ try:
 
         option = generate_option(options)
 
-        if option == 0:
+        if option == 1:
             value = console.input("Enter [bold blue]Tail Number[/]: ")
             print_tail_to_icao(value)
             
-        if option == 1:
+        if option == 2:
             value = console.input("Enter [bold blue]ICAO Designation[/]: ")
             print_icao_to_tail(value)
         

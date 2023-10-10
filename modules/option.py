@@ -11,4 +11,7 @@ def generate_option(options):
     if res < 1 or res > len(options):
         console.print("[bold red] INVALID OPTION [/bold red]")
         return None
+    
+    console.print("\n")
+
     return res

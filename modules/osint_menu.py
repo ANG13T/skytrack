@@ -18,11 +18,11 @@ try:
         
         option = generate_option(run_icao_tail.options)
 
-        if option == 0:
+        if option == 1:
             value = console.input("Enter [bold blue]Tail Number[/]: ")
             osint_from_tail(value)
             
-        if option == 1:
+        if option == 2:
             value = console.input("Enter [bold blue]ICAO Designation[/]: ")
             osint_from_icao(value)
         
