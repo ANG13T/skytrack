@@ -17,11 +17,13 @@ try:
             "🛫 Extract Information about Plane",
             "📘 Generate Flight Information PDF",
             "🛬 Tail Number and ICAO Conversion",
-            "ℹ️  About and Usage",
-            "Exit skytrack",
+            "🧭 About and Usage",
+            "Exit Tool",
         ]
 
-        option = generate_option()
+        option = generate_option(menu.options)
+
+        print("generated option")
 
         # terminal_menu = TerminalMenu(
         #     menu.options,
@@ -33,6 +35,9 @@ try:
         # )
         # menu.menu_entry_index = terminal_menu.show()  / 2
 
+        if option == None:
+            rerun()
+            return
 
         if option == 0:
             import modules.osint_menu
