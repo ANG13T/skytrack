@@ -22,11 +22,11 @@ https://aviationstack.com/documentation
 
 https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
+https://pkgstore.datahub.io/core/airport-codes/airport-codes/archive/dfadb79d7ba34a49242332f2eaf4f1b0/airport-codes.csv
+
 flight radar (airport information)
 
 flight aware
-
-faa registry
 
 jet photos (done)
 
@@ -60,9 +60,6 @@ a00002	N1A
 a00003	N1AA
 
 
-https://opensky-network.org/datasets/metadata/aircraftDatabase.csv
-
-
 # Disclaimer
 Only works for United States aircraft registrations
 The USA hex to ICAO tail number only works for USA registered aircraft
@@ -71,6 +68,15 @@ Use the following to learn about Aircraft registration numbers:
 https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/special_nnumbers
 
 
+def get_airport_list():
+	print('Getting Airport Data.....')
+	package = Package('https://datahub.io/core/airport-codes/datapackage.json')
+	for resource in package.resources:
+	    if resource.descriptor['datahub']['type'] == 'derived/csv':
+	        data = resource.read(keyed=True)
+	        print('Got Airport Data.....')
+	        return data
+	return -1
 
 
 # Features 
