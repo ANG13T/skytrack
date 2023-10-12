@@ -34,7 +34,7 @@ field_names = [
     "Notes",
     "Category Description"
 ]
-
+    
 
 class Aircraft:
     def __init__(self, 
