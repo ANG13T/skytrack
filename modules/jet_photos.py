@@ -1,6 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 
+"""
+Information Derived from Jet Photos
+Data Fields (number = 1)
+Photos of the Plane (max photos = 3)
+"""
+
 URL = "https://www.jetphotos.com/photo/keyword/"
 
 

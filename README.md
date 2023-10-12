@@ -14,29 +14,28 @@ Find information about any airplane given a specific identifier
 
 # APIs Used
 
-https://pyflightdata.readthedocs.io/en/latest/pyflightdata.html
-
 https://weathercams.faa.gov/map/-158.51042,58.49937,-153.28368,59.74111/cameraSite/439/summary
 
 https://airportwebcams.net/igiugig-airport-webcam/
 
 https://aviationstack.com/documentation
 
-https://www.jetphotos.com/photo/keyword/N450FE
-
-jet photos (scrape 3 photos)
-
 https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
+flight radar (airport information)
+
+flight aware
 
 faa registry
+
+jet photos (done)
 
 wikipedia (done)
 
 opensky (done)
 
 Total: 9
-Done: 2
+Done: 3
 
 # Set Up
 Create an account using FlightRadar

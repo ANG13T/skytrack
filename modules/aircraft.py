@@ -33,7 +33,8 @@ field_names = [
     "ACARS",
     "Notes",
     "Category Description",
-    "Wiki Link"
+    "Wiki Link",
+    "Photos"
 ]
 
 class Aircraft:
@@ -65,7 +66,8 @@ class Aircraft:
         acars = None,
         notes = None,
         category_description = None,
-        wiki_link = None
+        wiki_link = None,
+        photos = None
         ):
         self.ICAO24 = icao24
         self.Registration = registration
@@ -95,6 +97,7 @@ class Aircraft:
         self.Notes = notes
         self.Category_Description = category_description
         self.Wiki_Link = wiki_link
+        self.photos = photos
 
     def print(self):
         obj = self.__dict__

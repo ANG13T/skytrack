@@ -1,16 +1,17 @@
 from FlightRadar24 import FlightRadar24API
 fr_api = FlightRadar24API()
 
-airline_icao = "UAE"
-aircraft_type = "B77W"
+"""
+Information Derived from Flight Radar
+Data Fields (number = 1)
+Information about airports throughout the flight
 
-zone = fr_api.get_zones()["northamerica"]
-bounds = fr_api.get_bounds(zone)
+- airport information departed and landed
 
-emirates_flights = fr_api.get_flights(
-    aircraft_type = aircraft_type,
-    airline = airline_icao,
-    bounds = bounds
-)
+"""
+
+def get_flightradar_data():
+    lukla_airport = fr_api.get_airport(code = "VNLK")
+    print(lukla_airport)
 
 
