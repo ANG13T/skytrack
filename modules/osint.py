@@ -1,7 +1,7 @@
 from modules.opensky import get_opensky_data
 from modules.wikipedia import get_wikipedia_data
 from modules.jet_photos import get_jetphotos_data
-from modules.aircraft import Aircraft
+from modules.models.aircraft import Aircraft
 
 def osint_from_tail(tail_value):
     # 1. Get ICAO
