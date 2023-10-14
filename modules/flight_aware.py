@@ -21,9 +21,11 @@ https://www.flightaware.com/resources/registration/N195PS
 
 BASE_URL = "https://www.flightaware.com"
 URL = "https://www.flightaware.com/live/flight/"
+REGISTRATION_URL = "https://www.flightaware.com/resources/registration/"
 
 def get_flightaware_data(tail_value):
     updated_url = URL + tail_value
+    registration_tail_url = REGISTRATION_URL + tail_value
     driver = webdriver.Firefox()
     driver.get(updated_url)
     time.sleep(3)
@@ -50,15 +52,27 @@ def get_flightaware_data(tail_value):
     driver.get(flight_history_url)
     time.sleep(5)
     history_page = driver.page_source
+
+    driver.get(registration_tail_url)
+    time.sleep(3)
+    registration_url = driver.page_source
     driver.quit()
 
     soup = BeautifulSoup(history_page, "html.parser")
 
     flight_logs = soup.find(id="tracklogTable").text.strip()
     flight_logs = re.split(r'\s+', flight_logs)
-    parse_flight_telemetry(flight_logs)
 
-    print(flight_logs)
+    print(parse_flight_telemetry(flight_logs))
+
+    soup = BeautifulSoup(registration_url, "html.parser")
+
+    title_1 = soup.find_all("div", _class="medium-1").text.strip()
+    subtitle = soup.find_all("div", _class="medium-3").text.strip()
+    history_table = soup.find(id="table-3799").text.strip()
+
+    print(title_1, subtitle, history_table)
+
 
     # Get Link for History
     print(flight_history_url)
@@ -84,7 +98,7 @@ def parse_flight_telemetry(logs):
     marker = -1
     tracker = -1
     for log in logs:
-        if log.includes("PM"):
+        if "PM" in log:
             result.append([])
             marker += 1
             result[marker].append(log)
@@ -92,4 +106,11 @@ def parse_flight_telemetry(logs):
         elif tracker != -1 and tracker < 8:
             result[marker].append(log)
             tracker += 1
-    return result
+    final = []
+    for res in result:
+        if len(res) == 8:
+            final.append(res)
+    return final
+
+def parse_registration_information(registration):
+    return
