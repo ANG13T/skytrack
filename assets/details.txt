@@ -1,7 +1,7 @@
         Find information about any aircraft given an ICAO ID
              GitHub: https://github.com/ANG13T/skytrack
 
-             Developed by Angelina Tsuboi (G4LXY) 
+             Developed by Angelina Tsuboi (G4LXY)
                       angelinatsuboi.com
 
 ══════════════════════════════════════════════════════════════════════
