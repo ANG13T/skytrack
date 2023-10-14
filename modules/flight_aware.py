@@ -4,6 +4,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 import re
+from modules.models.flight_registration import FlightRegistration
+from modules.models.flight_history import FlightHistory
+from modules.models.flight_telemetry import FlightTelemetry
 
 """
 Information Derived from Flight Aware
@@ -36,11 +39,7 @@ def get_flightaware_data(tail_value):
 
     past_flights = soup.find(id="flightPageActivityLog").text.strip()
     words = re.split(r'\s+', past_flights)
-    print(parse_past_flights(words))
-    # if past_flights != None:
-    #     past_flight_children = past_flights.findChildren()
-    #     for child in past_flight_children:
-    #         if child.contains
+    history = parse_past_flights(words)
     items = soup.find_all("a") #  TODO: optimize
 
     for item in items:
@@ -48,7 +47,6 @@ def get_flightaware_data(tail_value):
             flight_history_url = BASE_URL + item["href"]
     if flight_history_url == "":
         return None
-
 
     driver.get(flight_history_url)
     time.sleep(5)
@@ -64,7 +62,7 @@ def get_flightaware_data(tail_value):
     flight_logs = soup.find(id="tracklogTable").text.strip()
     flight_logs = re.split(r'\s+', flight_logs)
 
-    print(parse_flight_telemetry(flight_logs))
+    telem = parse_flight_telemetry(flight_logs)
 
     soup = BeautifulSoup(registration_url, "html.parser")
 
@@ -72,13 +70,10 @@ def get_flightaware_data(tail_value):
     subtitle = soup.find_all("div", {"class": "medium-3"})
     history_table = soup.find_all("div", {"class": "airportBoardContainer"})
 
-    parse_registration_information(title_1, subtitle, history_table)
+    registration = parse_registration_information(title_1, subtitle, history_table)
 
+    return {"history": history, "telemetry": telem, "registration": registration}
 
-    # Get Link for History
-    print(flight_history_url)
-
-# TODO: make a past flight model
 def parse_past_flights(flights):
     result = []
     marker = -1
@@ -91,8 +86,7 @@ def parse_past_flights(flights):
             result[marker].append(flight)
         elif len(result) > 0:
             result[marker].append(flight)
-    return result
-
+    return FlightHistory(result)
 
 def parse_flight_telemetry(logs):
     result = []
@@ -111,7 +105,7 @@ def parse_flight_telemetry(logs):
     for res in result:
         if len(res) == 8:
             final.append(res)
-    return final
+    return FlightTelemetry(final)
 
 def parse_registration_information(titles, subtitles, table):
     table = table[0].text.strip()
@@ -133,3 +127,4 @@ def parse_registration_information(titles, subtitles, table):
             elif map > -1:
                 table_contents[map].append(item)
     print(table_contents)
+    return FlightRegistration(parsed_contents, table_contents)

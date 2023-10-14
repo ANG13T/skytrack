@@ -1,6 +1,7 @@
 from modules.opensky import get_opensky_data
 from modules.wikipedia import get_wikipedia_data
 from modules.jet_photos import get_jetphotos_data
+from modules.flight_aware import get_flightaware_data
 from modules.models.aircraft import Aircraft
 
 def osint_from_tail(tail_value):
@@ -8,10 +9,15 @@ def osint_from_tail(tail_value):
     # 2. Get OpenSky
     # 3. Get Wikipedia
     # 4. Get Photos from Jet Photos
+    # 5. Get Data from Flight Aware (TODO: ask for permission to use emulation)
     aircraft = Aircraft()
     aircraft = get_opensky_data(aircraft, tail_value)
     aircraft = get_wikipedia_data(aircraft, tail_value)
     aircraft.photos = get_jetphotos_data(tail_value)
+    flight_aware = get_flightaware_data(tail_value)
+    aircraft.history = flight_aware["history"]
+    aircraft.telemetry = flight_aware["telemetry"]
+    aircraft.registration_details = flight_aware["registration"]
     aircraft.print()
     return
 

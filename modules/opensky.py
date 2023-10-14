@@ -1,7 +1,6 @@
 import os
 import requests
 import csv
-from modules.aircraft import Aircraft
 from modules.file_formatter import format_file_name
 
 """
