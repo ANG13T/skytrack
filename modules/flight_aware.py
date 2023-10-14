@@ -8,10 +8,11 @@ import re
 """
 Information Derived from Flight Aware
 Data Fields (number = 3)
-- Flight History and Latest Flight (done)
+- Flight History and Latest Flight
 - Flight Track Log and Telemetry (log it on a chart)
 - Regsitration Information
 
+Example URLS:
 https://www.flightaware.com/live/flight/N195PS/history/20231003/1950Z/KSMO/KEMT/tracklog
 
 https://www.flightaware.com/live/flight/N195PS
@@ -54,7 +55,7 @@ def get_flightaware_data(tail_value):
     history_page = driver.page_source
 
     driver.get(registration_tail_url)
-    time.sleep(3)
+    time.sleep(5)
     registration_url = driver.page_source
     driver.quit()
 
@@ -67,11 +68,11 @@ def get_flightaware_data(tail_value):
 
     soup = BeautifulSoup(registration_url, "html.parser")
 
-    title_1 = soup.find_all("div", _class="medium-1").text.strip()
-    subtitle = soup.find_all("div", _class="medium-3").text.strip()
-    history_table = soup.find(id="table-3799").text.strip()
+    title_1 = soup.find_all("div", {"class": "medium-1"})
+    subtitle = soup.find_all("div", {"class": "medium-3"})
+    history_table = soup.find_all("div", {"class": "airportBoardContainer"})
 
-    print(title_1, subtitle, history_table)
+    parse_registration_information(title_1, subtitle, history_table)
 
 
     # Get Link for History
@@ -112,5 +113,23 @@ def parse_flight_telemetry(logs):
             final.append(res)
     return final
 
-def parse_registration_information(registration):
-    return
+def parse_registration_information(titles, subtitles, table):
+    table = table[0].text.strip()
+    table = re.split(r'\s+', table)
+    parsed_contents = []
+    table_contents = []
+    for index in range(len(titles)):
+        parsed_contents.append([])
+        parsed_contents[index] = titles[index].text.strip()
+        parsed_contents[index] = subtitles[index].text.strip()
+    print(table)
+    map = -1
+    for item in table:
+        if item != "Date" and item != "Owner" and item != "Location":
+            if "Date" in item:
+                table_contents.append([])
+                map += 1
+                table_contents[map].append(item)
+            elif map > -1:
+                table_contents[map].append(item)
+    print(table_contents)
