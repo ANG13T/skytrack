@@ -69,7 +69,6 @@ def retrieve_value(line, val):
         return line[val]
     return None
 
-
 def get_opensky_data(aircraft, tail_value):
     print("Retrieving Data from Open Sky")
     headers = {

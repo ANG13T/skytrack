@@ -20,11 +20,12 @@ https://airportwebcams.net/igiugig-airport-webcam/
 
 https://aviationstack.com/documentation
 
-https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
-https://pkgstore.datahub.io/core/airport-codes/airport-codes/archive/dfadb79d7ba34a49242332f2eaf4f1b0/airport-codes.csv
+airport information (https://pkgstore.datahub.io/core/airport-codes/airport-codes/archive/dfadb79d7ba34a49242332f2eaf4f1b0/airport-codes.csv)
 
-flight aware
+aviation safety (done)
+
+flight aware (done)
 
 jet photos (done)
 
@@ -33,7 +34,7 @@ wikipedia (done)
 opensky (done)
 
 Total: 9
-Done: 3
+Done: 4
 
 # Set Up
 Create an account using FlightRadar
@@ -99,3 +100,12 @@ https://pyfpdf.readthedocs.io/en/latest/
 
 Jinja2 and FPDF:
 https://stackoverflow.com/questions/44054938/python-jinja2-putting-all-html-from-python-into-one-pdf-rather-than-multipl
+
+finish:
+- implement all data sources
+- generate PDF
+- make menu flow
+- format data visualization
+- write README
+- make cool banner and icon
+- share on Linkedin, Reddit, GitHub, Twitter, and Discord

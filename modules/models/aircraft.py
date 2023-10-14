@@ -73,7 +73,9 @@ class Aircraft:
         photos = None,
         history = None,
         telemetry = None,
-        registration_details = None
+        registration_details = None,
+        safety_data = None,
+        airport = None
         ):
         self.ICAO24 = icao24
         self.Registration = registration
@@ -106,7 +108,9 @@ class Aircraft:
         self.photos = photos,
         self.history = history,
         self.telemetry = telemetry,
-        self.registration_details = registration_details
+        self.registration_details = registration_details,
+        self.safety_data = safety_data,
+        self.airport = airport
 
     def print(self):
         obj = self.__dict__

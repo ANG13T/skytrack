@@ -23,6 +23,8 @@ https://www.flightaware.com/live/flight/N195PS
 https://www.flightaware.com/resources/registration/N195PS
 """
 
+# Get Aiport TO and FROM INFO
+
 BASE_URL = "https://www.flightaware.com"
 URL = "https://www.flightaware.com/live/flight/"
 REGISTRATION_URL = "https://www.flightaware.com/resources/registration/"
