@@ -54,6 +54,11 @@ def get_flightaware_data(tail_value):
 
     soup = BeautifulSoup(history_page, "html.parser")
 
+    flight_logs = soup.find(id="tracklogTable").text.strip()
+    flight_logs = re.split(r'\s+', flight_logs)
+    parse_flight_telemetry(flight_logs)
+
+    print(flight_logs)
 
     # Get Link for History
     print(flight_history_url)
@@ -71,4 +76,20 @@ def parse_past_flights(flights):
             result[marker].append(flight)
         elif len(result) > 0:
             result[marker].append(flight)
+    return result
+
+
+def parse_flight_telemetry(logs):
+    result = []
+    marker = -1
+    tracker = -1
+    for log in logs:
+        if log.includes("PM"):
+            result.append([])
+            marker += 1
+            result[marker].append(log)
+            tracker = 1
+        elif tracker != -1 and tracker < 8:
+            result[marker].append(log)
+            tracker += 1
     return result

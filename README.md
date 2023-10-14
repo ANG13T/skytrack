@@ -24,8 +24,6 @@ https://aviation-safety.net/database/registration/regsearch.php?regi={}
 
 https://pkgstore.datahub.io/core/airport-codes/airport-codes/archive/dfadb79d7ba34a49242332f2eaf4f1b0/airport-codes.csv
 
-flight radar (airport information)
-
 flight aware
 
 jet photos (done)
