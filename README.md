@@ -20,9 +20,9 @@ https://airportwebcams.net/igiugig-airport-webcam/
 
 https://aviationstack.com/documentation
 
-metar https://beta.aviationweather.gov/cgi-bin/data/metar.php?ids=KORD&format=decoded (in progress for to and from)
+metar (in progress for to and from)
 
-airport information (https://pkgstore.datahub.io/core/airport-codes/airport-codes/archive/dfadb79d7ba34a49242332f2eaf4f1b0/airport-codes.csv) (in progress for to and from)
+airport information (done)
 
 aviation safety (done)
 
@@ -35,11 +35,9 @@ wikipedia (done)
 opensky (done)
 
 Total: 9
-Done: 4
+Done: 5
 
 # Set Up
-Create an account using FlightRadar
-https://www.flightradar24.com/premium/signup
 
 # Data Sources
 
