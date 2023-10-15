@@ -2,7 +2,7 @@ import os
 import requests
 import csv
 from modules.file_formatter import format_file_name
-from modules.models.aircraft import Airport
+from modules.models.airport import Airport
 
 '''
 Information Derived from Airport Codes
@@ -41,7 +41,7 @@ def retrieve_value(line, val):
         return line[val]
     return None
 
-def get_airport_info(airport_ident):
+def get_airport_info(airport_ident, airport_name):
     print("Retrieving Airport Codes")
     headers = {
         'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'\
@@ -72,7 +72,8 @@ def get_airport_info(airport_ident):
     with open(cache_path, 'r') as f:
         result = csv.reader(f)
         for line in result:
-            if airport_ident in line:
+            print(line, airport_ident, airport_name, airport_ident in line, airport_name in line)
+            if airport_ident in line[0] and airport_name in line[2]:
 
                 print(airport_ident)
                 airport = Airport()
@@ -92,4 +93,4 @@ def get_airport_info(airport_ident):
 
                 return airport
 
-    return airport
+    return None

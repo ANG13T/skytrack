@@ -106,6 +106,7 @@ finish:
 - implement all data sources
 - generate PDF
 - make menu flow
+- init status updates
 - format data visualization
 - write README
 - make cool banner and icon
