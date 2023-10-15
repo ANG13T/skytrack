@@ -74,7 +74,7 @@ def get_flightaware_data(tail_value):
 
     registration = parse_registration_information(title_1, subtitle, history_table)
 
-    return {"history": history, "telemetry": telem, "registration": registration}
+    return {"history": history, "telemetry": telem, "registration": registration, "arrival": get_arrival_airport(history), "departure": get_departure_airport(history)}
 
 def parse_past_flights(flights):
     result = []
@@ -89,6 +89,12 @@ def parse_past_flights(flights):
         elif len(result) > 0:
             result[marker].append(flight)
     return FlightHistory(result)
+
+def get_departure_airport(history):
+        print(history[0])
+
+def get_arrival_airport(history):
+        print(history[len(history) - 1])
 
 def parse_flight_telemetry(logs):
     result = []
