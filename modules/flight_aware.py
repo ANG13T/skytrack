@@ -91,10 +91,10 @@ def parse_past_flights(flights):
     return FlightHistory(result)
 
 def get_departure_airport(history):
-        print(history[0])
+        return history[0]
 
 def get_arrival_airport(history):
-        print(history[len(history) - 1])
+        return history[len(history) - 1]
 
 def parse_flight_telemetry(logs):
     result = []
@@ -124,7 +124,6 @@ def parse_registration_information(titles, subtitles, table):
         parsed_contents.append([])
         parsed_contents[index] = titles[index].text.strip()
         parsed_contents[index] = subtitles[index].text.strip()
-    print(table)
     map = -1
     for item in table:
         if item != "Date" and item != "Owner" and item != "Location":
@@ -134,5 +133,17 @@ def parse_registration_information(titles, subtitles, table):
                 table_contents[map].append(item)
             elif map > -1:
                 table_contents[map].append(item)
-    print(table_contents)
     return FlightRegistration(parsed_contents, table_contents)
+
+
+def get_airport_code(airport):
+    for index, value in enumerate(airport):
+        if value == "-":
+            return airport[index + 1]
+    return None
+
+def get_airport_name(airport):
+    for index, value in enumerate(airport):
+        if len(value) == 3:
+            return airport[index + 1]
+    return None
