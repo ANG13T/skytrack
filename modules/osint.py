@@ -25,7 +25,7 @@ def osint_from_tail(tail_value):
     aircraft.registration_details = flight_aware["registration"]
     aircraft.safety_data = get_aviation_safety_data(tail_value)
     aircraft.departure_airport = get_airport_info(flight_aware["departure"])
-    aircraft.arrival_airpot = get_airport_info(flight_aware["arrival"])
+    aircraft.arrival_airport = get_airport_info(flight_aware["arrival"])
 
     aircraft.print()
     return

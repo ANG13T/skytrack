@@ -91,9 +91,13 @@ def parse_past_flights(flights):
     return FlightHistory(result)
 
 def get_departure_airport(history):
+        if len(history) == 0:
+            return None
         return history[0]
 
 def get_arrival_airport(history):
+        if len(history) == 0:
+            return None
         return history[len(history) - 1]
 
 def parse_flight_telemetry(logs):

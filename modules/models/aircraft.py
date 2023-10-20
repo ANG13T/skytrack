@@ -39,7 +39,9 @@ field_names = [
     "Flight Telemetry",
     "Registration Information",
     "Departure Airport",
-    "Arrival Airport"
+    "Arrival Airport",
+    "Departure METAR",
+    "Arrival METAR"
 ]
 
 class Aircraft:
@@ -78,7 +80,9 @@ class Aircraft:
         registration_details = None,
         safety_data = None,
         departure_airport = None,
-        arrival_airpot = None,
+        arrival_airport = None,
+        departure_metar = None,
+        arrival_metar = None
         ):
         self.ICAO24 = icao24
         self.Registration = registration
@@ -114,7 +118,9 @@ class Aircraft:
         self.registration_details = registration_details,
         self.safety_data = safety_data,
         self.departure_airport = departure_airport
-        self.arrival_airpot = arrival_airpot
+        self.arrival_airport = arrival_airport
+        self.departure_metar = departure_metar
+        self.arrival_metar = arrival_metar
 
     def print(self):
         obj = self.__dict__
