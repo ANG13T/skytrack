@@ -141,12 +141,16 @@ def parse_registration_information(titles, subtitles, table):
 
 
 def get_airport_code(airport):
+    if airport == None:
+        return None
     for index, value in enumerate(airport):
         if value == "-":
             return airport[index + 1]
     return None
 
 def get_airport_name(airport):
+    if airport == None:
+        return None
     for index, value in enumerate(airport):
         if len(value) == 3:
             return airport[index + 1]

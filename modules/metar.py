@@ -4,7 +4,6 @@ Information Derived from Aviation Weather
 Data Fields (number = 1)
 METAR information
 Date (yyyymmdd_hhmm)
-
 """
 
 URL = "https://aviationweather.gov/cgi-bin/data/metar.php?ids={}&format=decoded"
