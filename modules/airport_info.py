@@ -69,7 +69,7 @@ def get_airport_info(airport_ident, airport_name):
         else:
             print(r.status_code)
 
-    with open(cache_path, 'r') as f:
+    with open(cache_path, 'r', encoding="utf8") as f:
         result = csv.reader(f)
         for line in result:
             print(line, airport_ident, airport_name, airport_ident in line, airport_name in line)

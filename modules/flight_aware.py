@@ -56,7 +56,11 @@ def get_flightaware_data(tail_value):
 
     driver.get(registration_tail_url)
     time.sleep(5)
-    registration_url = driver.page_source
+    try:
+        registration_url = driver.page_source
+    except:
+        print("Unable to retrieve registration information")
+
     driver.quit()
 
     soup = BeautifulSoup(history_page, "html.parser")
