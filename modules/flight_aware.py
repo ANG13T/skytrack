@@ -105,7 +105,7 @@ def parse_flight_telemetry(logs):
     output = FlightTelemetry([])
     marker = -1
     tracker = -1
-    for log in logs:
+    for index, log in enumerate(logs):
         if "PM" in log:
             result.append([])
             marker += 1
@@ -115,18 +115,17 @@ def parse_flight_telemetry(logs):
             result[marker].append(log)
 
             if "Departure" in log:
-                output.departure_time = result[marker + 1: marker + 6]
+                output.departure_time = logs[index + 1: index + 6]
 
             elif "Arrival" in log:
-                output.arrival_time = result[marker + 1: marker + 6]
+                output.arrival_time = logs[index + 1: index + 6]
 
             tracker += 1
     final = []
     for res in result:
         if len(res) == 8:
             final.append(res)
-        output.telemetry = result
-    print("output telemetry", output.arrival_time, output.departure_time)
+    output.telemetry = final
     return output
 
 def parse_registration_information(titles, subtitles, table):
