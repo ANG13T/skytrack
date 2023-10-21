@@ -102,6 +102,7 @@ def get_arrival_airport(history):
 
 def parse_flight_telemetry(logs):
     result = []
+    output = FlightTelemetry([])
     marker = -1
     tracker = -1
     for log in logs:
@@ -112,12 +113,21 @@ def parse_flight_telemetry(logs):
             tracker = 1
         elif tracker != -1 and tracker < 8:
             result[marker].append(log)
+
+            if "Departure" in log:
+                output.departure_time = result[marker + 1: marker + 6]
+
+            elif "Arrival" in log:
+                output.arrival_time = result[marker + 1: marker + 6]
+
             tracker += 1
     final = []
     for res in result:
         if len(res) == 8:
             final.append(res)
-    return FlightTelemetry(final)
+        output.telemetry = result
+    print("output telemetry", output.arrival_time, output.departure_time)
+    return output
 
 def parse_registration_information(titles, subtitles, table):
     table = table[0].text.strip()
@@ -141,13 +151,25 @@ def parse_registration_information(titles, subtitles, table):
 
 
 def get_airport_code(airport):
+    if airport == None:
+        return None
     for index, value in enumerate(airport):
         if value == "-":
             return airport[index + 1]
     return None
 
 def get_airport_name(airport):
+    if airport == None:
+        return None
     for index, value in enumerate(airport):
         if len(value) == 3:
             return airport[index + 1]
     return None
+
+def get_arrival_airport_time(airport):
+    if airport == None:
+        return None
+
+def get_departure_airport_time(airport):
+    if airport == None:
+            return None
