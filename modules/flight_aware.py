@@ -7,6 +7,7 @@ import re
 from modules.models.flight_registration import FlightRegistration
 from modules.models.flight_history import FlightHistory
 from modules.models.flight_telemetry import FlightTelemetry
+import dateparser
 
 """
 Information Derived from Flight Aware
@@ -115,10 +116,10 @@ def parse_flight_telemetry(logs):
             result[marker].append(log)
 
             if "Departure" in log:
-                output.departure_time = logs[index + 1: index + 6]
+                output.departure_time = parse_time(logs[index + 4: index + 7])
 
             elif "Arrival" in log:
-                output.arrival_time = logs[index + 1: index + 6]
+                output.arrival_time = parse_time(logs[index + 4: index + 7])
 
             tracker += 1
     final = []
@@ -126,6 +127,11 @@ def parse_flight_telemetry(logs):
         if len(res) == 8:
             final.append(res)
     output.telemetry = final
+    return output
+
+def parse_time(time_array):
+    output = dateparser.parse(time_array.join(" "))
+    print(time_array, time_array.join(" "), output)
     return output
 
 def parse_registration_information(titles, subtitles, table):
@@ -164,11 +170,3 @@ def get_airport_name(airport):
         if len(value) == 3:
             return airport[index + 1]
     return None
-
-def get_arrival_airport_time(airport):
-    if airport == None:
-        return None
-
-def get_departure_airport_time(airport):
-    if airport == None:
-            return None
