@@ -14,6 +14,8 @@ def get_metar_data(airport_ident, time):
         return None
     updated_url = URL.format(airport_ident)
     page = requests.get(updated_url)
+    results = page.split(" \s")
+    print(results)
     print(page)
 
 def convert_time(time_string):
