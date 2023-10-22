@@ -4,5 +4,8 @@ from modules.airport_info import get_airport_info
 
 print(get_jetphotos_data("N450FE"))
 aiport_code = get_airport_code(get_flightaware_data("N1321T")["departure"])
-airport_name = get_airport_name(get_flightaware_data("N1321T")["arrival"])
+airport_name = get_airport_name(get_flightaware_data("N1321T")["departure"])
 print(get_airport_info(aiport_code, airport_name))
+print("analysis for ", airport_name, aiport_code)
+print(get_flightaware_data("N1321T")["telemetry"].telemetry)
+print()
