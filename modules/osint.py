@@ -19,27 +19,27 @@ def osint_from_tail(tail_value):
     # 5. Get Data from Flight Aware (TODO: ask for permission to use emulation)
     # 6. Get Airport Information
     # 7. Get METAR Information for both Arrival and Departure Airports
-    with console.status("[bold green]Fetching data...[/bold green]") as status:
+    with console.status("[white]Fetching data...[/white]") as status:
         aircraft = Aircraft()
-        console.log("[blue]Fetching OpenSky Data[/blue]")
+        console.log("[blue]✈️ Fetching OpenSky Data[/blue]")
         aircraft = get_opensky_data(aircraft, tail_value)
-        console.log("[green]Finish Fetching OpenSky Data[/green]")
-        console.log("[blue]Fetching Wikipedia Data[/blue]")
+        console.log("[green]✓ Finish Fetching OpenSky Data[/green]")
+        console.log("[blue]✈️ Fetching Wikipedia Data[/blue]")
         aircraft = get_wikipedia_data(aircraft, tail_value)
-        console.log("[green]Finish Fetching Wikipedia Data[/green]")
-        console.log("[blue]Fetching Jet Photos Data[/blue]")
+        console.log("[green]✓ Finish Fetching Wikipedia Data[/green]")
+        console.log("[blue]✈️ Fetching Jet Photos Data[/blue]")
         aircraft.photos = get_jetphotos_data(tail_value)
-        console.log("[green]Finish Fetching Jet Photos Data[/green]")
-        console.log("[blue]Fetching FlightAware Data[/blue]")
+        console.log("[green]✓ Finish Fetching Jet Photos Data[/green]")
+        console.log("[blue]✈️ Fetching FlightAware Data[/blue]")
         flight_aware = get_flightaware_data(tail_value)
         aircraft.history = flight_aware["history"]
         aircraft.telemetry = flight_aware["telemetry"]
         aircraft.registration_details = flight_aware["registration"]
-        console.log("[green]Finish Fetching FlightAware Data[/green]")
-        console.log("[blue]Fetching Aviation Safety Data[/blue]")
+        console.log("[green]✓ Finish Fetching FlightAware Data[/green]")
+        console.log("[blue]✈️ Fetching Aviation Safety Data[/blue]")
         aircraft.safety_data = get_aviation_safety_data(tail_value)
-        console.log("[green]Finish Fetching Aviation Safety Data[/green]")
-        console.log("[blue]Fetching Airport Data[/blue]")
+        console.log("[green]✓ Finish Fetching Aviation Safety Data[/green]")
+        console.log("[blue]✈️ Fetching Airport Data[/blue]")
         d_aiport_code = get_airport_code(flight_aware["departure"])
         d_airport_name = get_airport_name(flight_aware["departure"])
         a_aiport_code = get_airport_code(flight_aware["arrival"])

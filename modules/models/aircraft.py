@@ -5,6 +5,11 @@ Fields include the following:
 icao24 - 
 """
 
+from rich.align import Align
+from rich.console import Console
+from rich.live import Live
+from rich.table import Table
+
 field_names = [
     "ICAO24",
     "Registration",
@@ -122,10 +127,27 @@ class Aircraft:
         self.arrival_airport = arrival_airport
         self.departure_metar = departure_metar
         self.arrival_metar = arrival_metar
+        
 
     def print(self):
+        # allow option to see all flight history
+        console = Console()
+        table = Table(show_footer=False)
+        table_centered = Align.left(table)
         obj = self.__dict__
-        count = 0
-        for key, value in obj.items():
-            print(f"{field_names[count]}: {value}")
-            count += 1
+
+        with Live(table_centered, console=console,
+          screen=False):
+            print(self.arrival_metar, len(obj.items()))
+            table.add_column(f"Aircraft Information for {self.Registration}", no_wrap=True)
+            count = 0
+            for key, value in obj.items():
+                print(key, value, len(value))
+                if len(value) > 0:
+                    table.add_row(f"[b white]{field_names[count]}[/]: [white]{value} [/]")
+                count += 1
+        
+            table_width = console.measure(table).maximum
+        
+            table.width = None
+        console.print(table)

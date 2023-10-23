@@ -123,7 +123,6 @@ def parse_flight_telemetry(logs, arrival_data, departure_data):
                 output.departure_time = parse_time([departure_data[0]] + logs[index + 4: index + 7])
 
             elif "Arrival" in log:
-                print(logs[index: index + 10])
                 output.arrival_time = parse_time([arrival_data[0]] + logs[index + 4: index + 7])
 
             tracker += 1
