@@ -1,7 +1,7 @@
 from modules.opensky import get_opensky_data
 from modules.wikipedia import get_wikipedia_data
 from modules.jet_photos import get_jetphotos_data
-from modules.flight_aware import get_flightaware_data
+from modules.flight_aware import get_flightaware_data, get_airport_code, get_airport_name
 from modules.aviation_safety import get_aviation_safety_data
 from modules.airport_info import get_airport_info
 from modules.metar import get_metar_data
@@ -25,13 +25,15 @@ def osint_from_tail(tail_value):
     aircraft.telemetry = flight_aware["telemetry"]
     aircraft.registration_details = flight_aware["registration"]
     aircraft.safety_data = get_aviation_safety_data(tail_value)
-    aircraft.departure_airport = get_airport_info(flight_aware["departure"])
-    aircraft.arrival_airpot = get_airport_info(flight_aware["arrival"])
+    d_aiport_code = get_airport_code(flight_aware["departure"])
+    d_airport_name = get_airport_name(flight_aware["departure"])
+    a_aiport_code = get_airport_code(flight_aware["arrival"])
+    a_airport_name = get_airport_name(flight_aware["arrival"])
+    aircraft.departure_airport = get_airport_info(d_aiport_code, d_airport_name) 
+    aircraft.arrival_airport = get_airport_info(a_aiport_code, a_airport_name)
     aircraft.arrival_metar = get_metar_data(aircraft.arrival_airport.ident, aircraft.telemetry.arrival_time)
     aircraft.departure_metar = get_metar_data(aircraft.departure_airport.ident, aircraft.telemetry.departure_time)
-
     aircraft.print()
-    return
 
 def osint_from_icao(icao_value):
     osint_from_tail(icao_to_tail(icao_value))

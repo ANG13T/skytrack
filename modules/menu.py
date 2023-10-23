@@ -59,6 +59,7 @@ except KeyboardInterrupt:
 
 except TypeError:
     os.system("clear")
+    print("hi 3")
     main_banner()
     console.print(f"\n[bold][red] INVALID COMMAND [/red][/bold]")
     rerun()

@@ -70,6 +70,7 @@ def get_airport_info(airport_ident, airport_name):
             print(r.status_code)
 
     with open(cache_path, 'r') as f:
+        print("inside this loop")
         result = csv.reader(f)
         for line in result:
             if airport_ident in line[0] and airport_name in line[2]:
@@ -90,4 +91,5 @@ def get_airport_info(airport_ident, airport_name):
 
                 return airport
 
+    print("slipping")
     return None

@@ -9,24 +9,24 @@ import os
 console = Console()
 
 try: 
-    def run_icao_tail():
-        run_icao_tail.options = [
+    def osint_options_menu():
+        osint_options_menu.options = [
             "🛫  Input Tail Number",
             "🛬  Input ICAO Designator",
             "Back to Main Menu"
         ]
         
-        option = generate_option(run_icao_tail.options)
+        option = generate_option(osint_options_menu.options)
 
         if option == 1:
             value = console.input("Enter [bold blue]Tail Number[/]: ")
             osint_from_tail(value)
-            
+
         if option == 2:
             value = console.input("Enter [bold blue]ICAO Designation[/]: ")
             osint_from_icao(value)
         
-    run_icao_tail()
+    osint_options_menu()
 
 except KeyboardInterrupt:
     print("\n")
@@ -34,5 +34,6 @@ except KeyboardInterrupt:
     sleep(1)
 
 except TypeError:
-    os.system("clear")
+    #os.system("clear")
+    print("hi 2")
     rerun()
