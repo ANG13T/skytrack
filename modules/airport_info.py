@@ -41,8 +41,7 @@ def retrieve_value(line, val):
         return line[val]
     return None
 
-def get_airport_info(airport_ident, airport_name):
-    print("Retrieving Airport Codes")
+def get_airport_info(airport_ident, airport_name): 
     headers = {
         'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'\
         'Information at: https://github.com/ANG13T/skytrack'
@@ -70,7 +69,6 @@ def get_airport_info(airport_ident, airport_name):
             print(r.status_code)
 
     with open(cache_path, 'r') as f:
-        print("inside this loop")
         result = csv.reader(f)
         for line in result:
             if airport_ident in line[0] and airport_name in line[2]:

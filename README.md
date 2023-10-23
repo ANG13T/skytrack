@@ -90,9 +90,10 @@ https://stackoverflow.com/questions/44054938/python-jinja2-putting-all-html-from
 
 finish:
 
-- make menu flow
 - init status updates
 	- progress and loader bars / wheels for downloading in progress (6 data sources)
+- print output of osint in a pretty way
+
 
 - generate PDF
 - format data visualization from telemetry

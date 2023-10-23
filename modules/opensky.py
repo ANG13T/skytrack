@@ -70,7 +70,6 @@ def retrieve_value(line, val):
     return None
 
 def get_opensky_data(aircraft, tail_value):
-    print("Retrieving Data from Open Sky")
     headers = {
         'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'\
         'Information at: https://github.com/ANG13T/skytrack'

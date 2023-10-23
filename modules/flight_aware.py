@@ -69,11 +69,7 @@ def get_flightaware_data(tail_value):
     arrival_data = get_arrival_airport(history)
     departure_data = get_departure_airport(history)
 
-    print("b4 telem")
-
     telem = parse_flight_telemetry(flight_logs, arrival_data, departure_data)
-
-    print("done telem")
 
     soup = BeautifulSoup(registration_url, "html.parser")
 
@@ -82,8 +78,6 @@ def get_flightaware_data(tail_value):
     history_table = soup.find_all("div", {"class": "airportBoardContainer"})
 
     registration = parse_registration_information(title_1, subtitle, history_table)
-
-    print("done registration", registration)
 
     return {"history": history, "telemetry": telem, "registration": registration, "arrival": arrival_data, "departure": departure_data}
 
@@ -141,10 +135,8 @@ def parse_flight_telemetry(logs, arrival_data, departure_data):
     return output
 
 def parse_time(time_array):
-    print("timing", time_array)
     output = dateparser.parse(" ".join(time_array))
     output = output.astimezone(DT.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-    print("done timing")
     return output
 
 def parse_registration_information(titles, subtitles, table):
