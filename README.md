@@ -8,18 +8,9 @@ Find information about any airplane given a specific identifier
     - latest flown aircraft
 - get general avosint information
 - get atc frequency info of airport
-- airport webcam links
-- get airport diagram
 - enter identifier of aircraft or registration or tail number
 
 # APIs Used
-
-https://weathercams.faa.gov/map/-158.51042,58.49937,-153.28368,59.74111/cameraSite/439/summary
-
-https://airportwebcams.net/igiugig-airport-webcam/
-
-https://aviationstack.com/documentation
-
 metar (done)
 
 airport information (done)
@@ -33,9 +24,6 @@ jet photos (done)
 wikipedia (done)
 
 opensky (done)
-
-Total: 9
-Done: 6
 
 # Set Up
 

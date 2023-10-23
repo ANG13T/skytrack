@@ -6,6 +6,7 @@ from modules.aviation_safety import get_aviation_safety_data
 from modules.airport_info import get_airport_info
 from modules.metar import get_metar_data
 from modules.models.aircraft import Aircraft
+from modules.icao_tail import icao_to_tail
 
 def osint_from_tail(tail_value):
     # 1. Get ICAO
@@ -33,4 +34,4 @@ def osint_from_tail(tail_value):
     return
 
 def osint_from_icao(icao_value):
-    return
+    osint_from_tail(icao_to_tail(icao_value))
