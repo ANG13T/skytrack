@@ -8,6 +8,7 @@ from modules.models.flight_registration import FlightRegistration
 from modules.models.flight_history import FlightHistory
 from modules.models.flight_telemetry import FlightTelemetry
 import dateparser
+import datetime as DT
 
 """
 Information Derived from Flight Aware
@@ -130,8 +131,8 @@ def parse_flight_telemetry(logs):
     return output
 
 def parse_time(time_array):
-    output = dateparser.parse(time_array.join(" "))
-    print(time_array, time_array.join(" "), output)
+    output = dateparser.parse(" ".join(time_array))
+    output = output.astimezone(DT.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return output
 
 def parse_registration_information(titles, subtitles, table):
