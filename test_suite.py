@@ -11,6 +11,7 @@ print("AAA", flight_aware_data["telemetry"].arrival_time, "AAA", aiport_code, ai
 airport_info = get_airport_info(aiport_code, airport_name)
 print(airport_info.ident, flight_aware_data["telemetry"].arrival_time)
 
+print(flight_aware_data["arrival"], 'arrival')
 print(aiport_code, get_metar_data(airport_info.ident, flight_aware_data["telemetry"].arrival_time))
 # print(flight_aware_data["telemetry"].departure_time, get_metar_data(get_airport_info(flight_aware_data["departure"]).ident), get_airport_info(flight_aware_data["departure"]))
 # print(get_metar_data(get_airport_info(flight_aware_data["departure"]).ident, flight_aware_data["telemetry"].departure_time))

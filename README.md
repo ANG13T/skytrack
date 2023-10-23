@@ -20,7 +20,7 @@ https://airportwebcams.net/igiugig-airport-webcam/
 
 https://aviationstack.com/documentation
 
-metar (in progress for to and from)
+metar (done)
 
 airport information (done)
 
@@ -35,7 +35,7 @@ wikipedia (done)
 opensky (done)
 
 Total: 9
-Done: 5
+Done: 6
 
 # Set Up
 
