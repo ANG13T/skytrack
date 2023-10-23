@@ -89,11 +89,14 @@ Jinja2 and FPDF:
 https://stackoverflow.com/questions/44054938/python-jinja2-putting-all-html-from-python-into-one-pdf-rather-than-multipl
 
 finish:
-- implement all data sources
-- generate PDF
+
 - make menu flow
 - init status updates
-- format data visualization
+	- progress and loader bars / wheels for downloading in progress (6 data sources)
+
+- generate PDF
+- format data visualization from telemetry
+
 - write README
 - make cool banner and icon
 - share on Linkedin, Reddit, GitHub, Twitter, and Discord

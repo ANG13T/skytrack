@@ -38,6 +38,7 @@ field_names = [
     "Flight History",
     "Flight Telemetry",
     "Registration Information",
+    "Safety History",
     "Departure Airport",
     "Arrival Airport",
     "Departure METAR",
