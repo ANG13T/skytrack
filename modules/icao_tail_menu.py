@@ -34,5 +34,4 @@ except KeyboardInterrupt:
 
 except TypeError:
     os.system("clear")
-    print("hi 4")
     rerun()

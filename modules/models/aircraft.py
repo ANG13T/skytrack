@@ -1,8 +1,5 @@
 """
 Aircraft is a model describing the data retrieved about a specific aircraft
-Fields include the following:
-
-icao24 - 
 """
 
 from rich.align import Align
@@ -48,6 +45,10 @@ field_names = [
     "Arrival Airport",
     "Departure METAR",
     "Arrival METAR"
+]
+
+field_values = [
+
 ]
 
 class Aircraft:
@@ -138,16 +139,13 @@ class Aircraft:
 
         with Live(table_centered, console=console,
           screen=False):
-            print(self.arrival_metar, len(obj.items()))
-            table.add_column(f"Aircraft Information for {self.Registration}", no_wrap=True)
+            table.add_column(f"Aircraft Information for {self.Registration} ✈️", no_wrap=True)
             count = 0
             for key, value in obj.items():
                 print(key, value, len(value))
                 if len(value) > 0:
                     table.add_row(f"[b white]{field_names[count]}[/]: [white]{value} [/]")
                 count += 1
-        
-            table_width = console.measure(table).maximum
         
             table.width = None
         console.print(table)

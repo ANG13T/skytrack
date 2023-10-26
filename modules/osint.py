@@ -7,7 +7,7 @@ from modules.airport_info import get_airport_info
 from modules.metar import get_metar_data
 from modules.models.aircraft import Aircraft
 from rich.console import Console
-from modules.icao_tail import icao_to_tail
+from modules.icao_tail import icao_to_tail, tail_to_icao
 
 console = Console()
 
@@ -20,7 +20,7 @@ def osint_from_tail(tail_value):
     # 6. Get Airport Information
     # 7. Get METAR Information for both Arrival and Departure Airports
     with console.status("[white]Fetching data...[/white]") as status:
-        aircraft = Aircraft()
+        aircraft = Aircraft(registration=tail_value, icao24=tail_to_icao(tail_value).capitalize())
         console.log("[blue]✈️ Fetching OpenSky Data[/blue]")
         aircraft = get_opensky_data(aircraft, tail_value)
         console.log("[green]✓ Finish Fetching OpenSky Data[/green]")
@@ -46,7 +46,8 @@ def osint_from_tail(tail_value):
         a_airport_name = get_airport_name(flight_aware["arrival"])
         aircraft.departure_airport = get_airport_info(d_aiport_code, d_airport_name) 
         aircraft.arrival_airport = get_airport_info(a_aiport_code, a_airport_name)
-        aircraft.arrival_metar = get_metar_data(aircraft.arrival_airport.ident, aircraft.telemetry.arrival_time)
+        if aircraft.arrival_airport:
+            aircraft.arrival_metar = get_metar_data(aircraft.arrival_airport.ident, aircraft.telemetry.arrival_time)
         aircraft.departure_metar = get_metar_data(aircraft.departure_airport.ident, aircraft.telemetry.departure_time)
         console.log("[green]Finish Fetching Airport Data[/green]")
         aircraft.print()

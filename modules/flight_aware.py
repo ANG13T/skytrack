@@ -139,6 +139,9 @@ def parse_time(time_array):
     return output
 
 def parse_registration_information(titles, subtitles, table):
+    if table == None or len(table) == 0:
+        return None
+    
     table = table[0].text.strip()
     table = re.split(r'\s+', table)
     parsed_contents = []

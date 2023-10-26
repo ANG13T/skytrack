@@ -94,6 +94,7 @@ finish:
 
 - generate PDF
 - format data visualization from telemetry
+- run additional tests
 
 - write README
 - make cool banner and icon
