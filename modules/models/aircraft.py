@@ -47,10 +47,6 @@ field_names = [
     "Arrival METAR"
 ]
 
-field_values = [
-
-]
-
 class Aircraft:
     def __init__(self,
         icao24 = None,
@@ -119,15 +115,27 @@ class Aircraft:
         self.Notes = notes
         self.Category_Description = category_description
         self.Wiki_Link = wiki_link
-        self.photos = photos,
-        self.history = history,
-        self.telemetry = telemetry,
-        self.registration_details = registration_details,
-        self.safety_data = safety_data,
-        self.departure_airport = departure_airport
-        self.arrival_airport = arrival_airport
-        self.departure_metar = departure_metar
-        self.arrival_metar = arrival_metar
+        self.Photos = photos,
+        self.History = history,
+        self.Telemetry = telemetry,
+        self.Registration_Details = registration_details,
+        self.Safety_Data = safety_data,
+        self.Departure_Airport = departure_airport
+        self.Arrival_Airport = arrival_airport
+        self.Departure_Metar = departure_metar
+        self.Arrival_Metar = arrival_metar
+
+
+    def get_row_content(self, key, value):
+        if len(value) > 0:
+            content = value
+            if str(value) == "false":
+                content = "Not Included"
+            elif str(value) == "true":
+                content = "Included"
+            return f"[b white]{key}[/]: [blue]{content} [/]" 
+        else:
+            return ""
         
 
     def print(self):
@@ -135,22 +143,57 @@ class Aircraft:
         console = Console()
         table = Table(show_footer=False)
         table_centered = Align.left(table)
-        obj = self.__dict__
+
+        contents = []
+
+        contents.append(self.get_row_content("ICAO24", self.ICAO24))
+        contents.append(self.get_row_content("Registration", self.Registration))
+        contents.append(self.get_row_content("Manufacturer ICAO", self.Manufacturer_ICAO))
+        contents.append(self.get_row_content("Manufacturer Name", self.Manufacturer_Name))
+        contents.append(self.get_row_content("Model", self.Model))
+        contents.append(self.get_row_content("Type Code", self.Type_Code))
+        contents.append(self.get_row_content("Serial Number", self.Serial_Number))
+        contents.append(self.get_row_content("Line Number", self.Line_Number))
+        contents.append(self.get_row_content("ICAO Aircraft Type", self.ICAO_Aircraft_Type))
+        # contents.append(self.get_row_content("Operator", self.Operator))
+        # contents.append(self.get_row_content("Operator Callsign", self.Operator_Callsign))
+        # contents.append(self.get_row_content("Operator ICAO", self.Operator_ICAO))
+        # contents.append(self.get_row_content("Operator IATA", self.Operator_IATA))
+        # contents.append(self.get_row_content("Owner", self.Owner))
+        # contents.append(self.get_row_content("Test Registration", self.Test_Registration))
+        # contents.append(self.get_row_content("Registered", self.Registered))
+        # contents.append(self.get_row_content("Registration_Valid_Until", self.Registration_Valid_Until))
+        # contents.append(self.get_row_content("Status", self.Status))
+        # contents.append(self.get_row_content("Built", self.Built))
+        # contents.append(self.get_row_content("First Flight Date", self.First_Flight_Date))
+        # contents.append(self.get_row_content("Seat Configuration", self.Seat_Configuration))
+        # contents.append(self.get_row_content("Engines", self.Engines))
+        # contents.append(self.get_row_content("Modes", self.Modes))
+        # contents.append(self.get_row_content("ADSB", self.ADSB))
+        # contents.append(self.get_row_content("ACARS", self.ACARS))
+        # contents.append(self.get_row_content("Notes", self.Notes))
+        # contents.append(self.get_row_content("Category Description", self.Category_Description))
+        # contents.append(self.get_row_content("Wiki Link", self.Wiki_Link))
+        # contents.append(self.get_row_content("Photos", self.Photos))
+        # contents.append(self.get_row_content("History", self.History))
+        # contents.append(self.get_row_content("Telemetry", self.Telemetry))
+        # contents.append(self.get_row_content("Registration Details", self.Registration_Details))
+        # contents.append(self.get_row_content("Safety Data", self.Safety_Data))
+        # contents.append(self.get_row_content("Departure Airport", self.Departure_Airport))
+        # contents.append(self.get_row_content("Arrival Airport", self.Arrival_Airport))
+        # contents.append(self.get_row_content("Departure Metar", self.Departure_Metar))
+        # contents.append(self.get_row_content("Arrival Metar", self.Arrival_Metar))
 
         with Live(table_centered, console=console,
           screen=False):
             table.add_column(f"Aircraft Information for {self.Registration} ✈️", no_wrap=True)
-            count = 0
-            for key, value in obj.items():
-                if len(value) > 0:
-                    content = value
-                    if str(value) == "false":
-                        content = "Not Included"
-                    elif str(value) == "true":
-                        content = "Included"
 
-                    table.add_row(f"[b white]{field_names[count]}[/]: [blue]{content} [/]")
-                count += 1
-        
+            for content in contents:
+                if len(content) > 0:
+                    table.add_row(content)
+
             table.width = None
+
+        print("hi")
+        console.print("\n")
         console.print(table)
