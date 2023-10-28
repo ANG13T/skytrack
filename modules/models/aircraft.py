@@ -142,9 +142,14 @@ class Aircraft:
             table.add_column(f"Aircraft Information for {self.Registration} ✈️", no_wrap=True)
             count = 0
             for key, value in obj.items():
-                print(key, value, len(value))
                 if len(value) > 0:
-                    table.add_row(f"[b white]{field_names[count]}[/]: [white]{value} [/]")
+                    content = value
+                    if str(value) == "false":
+                        content = "Not Included"
+                    elif str(value) == "true":
+                        content = "Included"
+
+                    table.add_row(f"[b white]{field_names[count]}[/]: [blue]{content} [/]")
                 count += 1
         
             table.width = None

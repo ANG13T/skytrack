@@ -20,7 +20,13 @@ def osint_from_tail(tail_value):
     # 6. Get Airport Information
     # 7. Get METAR Information for both Arrival and Departure Airports
     with console.status("[white]Fetching data...[/white]") as status:
-        aircraft = Aircraft(registration=tail_value, icao24=tail_to_icao(tail_value).capitalize())
+        icao = tail_to_icao(tail_value)
+        if not icao == None:
+            icao == icao.upper()
+        else:
+            return
+        
+        aircraft = Aircraft(registration=tail_value, icao24=icao)
         console.log("[blue]✈️ Fetching OpenSky Data[/blue]")
         aircraft = get_opensky_data(aircraft, tail_value)
         console.log("[green]✓ Finish Fetching OpenSky Data[/green]")
