@@ -64,34 +64,37 @@ categoryDescription: String - Description of the aircraft category.
 
 cache_path = format_file_name("./tmp/opensky.cache")
 
+
 def retrieve_value(line, val):
     if val <= len(line) - 1:
         return line[val]
     return None
 
+
 def get_opensky_data(aircraft, tail_value):
     headers = {
-        'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'\
+        'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'
         'Information at: https://github.com/ANG13T/skytrack'
     }
 
     if not os.path.exists(cache_path) or os.stat(cache_path).st_size == 0:
         r = requests.get(
-                'https://opensky-network.org/datasets/metadata/aircraftDatabase.csv',
-                stream=True,
-                headers=headers)
+            'https://opensky-network.org/datasets/metadata/aircraftDatabase.csv',
+            stream=True,
+            headers=headers)
 
         if r.status_code == 200:
             if not os.path.exists(os.path.dirname(cache_path)):
                 os.makedirs(os.path.dirname(cache_path))
 
-            with open(cache_path, 'wb') as f: 
-                total_l  = int(r.headers.get('content-length'))
-                dl       = 0
+            with open(cache_path, 'wb') as f:
+                total_l = int(r.headers.get('content-length'))
+                dl = 0
                 for data in r.iter_content(chunk_size=8192*4):
                     dl += len(data)
                     f.write(data)
-                    print('\r[*] Downloading {:2f}'.format((dl/total_l)*100), end='')
+                    print(
+                        '\r[*] Downloading {:2f}'.format((dl/total_l)*100), end='')
                 print('\r[*] Done loading !')
         else:
             print(r.status_code)
@@ -100,6 +103,7 @@ def get_opensky_data(aircraft, tail_value):
         result = csv.reader(f)
         for line in result:
             if tail_value in line:
+                print("line", line)
 
                 aircraft.ICAO24 = retrieve_value(line, 0)
                 aircraft.Registration = retrieve_value(line, 1)
