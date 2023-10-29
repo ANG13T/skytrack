@@ -70,7 +70,6 @@ def retrieve_value(line, val):
     return None
 
 def get_opensky_data(aircraft, tail_value):
-    print("Retrieving Data from Open Sky")
     headers = {
         'User-Agent': 'SKYTRACK: Aviation-based intelligence gathering tool'\
         'Information at: https://github.com/ANG13T/skytrack'
@@ -102,8 +101,6 @@ def get_opensky_data(aircraft, tail_value):
         for line in result:
             if tail_value in line:
 
-                print(tail_value)
-
                 aircraft.ICAO24 = retrieve_value(line, 0)
                 aircraft.Registration = retrieve_value(line, 1)
                 aircraft.Manufacturer_ICAO = retrieve_value(line, 2)
@@ -131,8 +128,6 @@ def get_opensky_data(aircraft, tail_value):
                 aircraft.ACARS = retrieve_value(line, 24)
                 aircraft.Notes = retrieve_value(line, 25)
                 aircraft.Category_Description = retrieve_value(line, 26)
-
-                aircraft.print()
 
                 return aircraft
 

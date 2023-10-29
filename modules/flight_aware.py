@@ -8,6 +8,7 @@ from modules.models.flight_registration import FlightRegistration
 from modules.models.flight_history import FlightHistory
 from modules.models.flight_telemetry import FlightTelemetry
 import dateparser
+import datetime as DT
 
 """
 Information Derived from Flight Aware
@@ -69,7 +70,10 @@ def get_flightaware_data(tail_value):
     flight_logs = soup.find(id="tracklogTable").text.strip()
     flight_logs = re.split(r'\s+', flight_logs)
 
-    telem = parse_flight_telemetry(flight_logs)
+    arrival_data = get_arrival_airport(history)
+    departure_data = get_departure_airport(history)
+
+    telem = parse_flight_telemetry(flight_logs, arrival_data, departure_data)
 
     soup = BeautifulSoup(registration_url, "html.parser")
 
@@ -79,7 +83,7 @@ def get_flightaware_data(tail_value):
 
     registration = parse_registration_information(title_1, subtitle, history_table)
 
-    return {"history": history, "telemetry": telem, "registration": registration, "arrival": get_arrival_airport(history), "departure": get_departure_airport(history)}
+    return {"history": history, "telemetry": telem, "registration": registration, "arrival": arrival_data, "departure": departure_data}
 
 def parse_past_flights(flights):
     result = []
@@ -105,7 +109,7 @@ def get_arrival_airport(history):
             return None
         return history[len(history) - 1]
 
-def parse_flight_telemetry(logs):
+def parse_flight_telemetry(logs, arrival_data, departure_data):
     result = []
     output = FlightTelemetry([])
     marker = -1
@@ -120,10 +124,10 @@ def parse_flight_telemetry(logs):
             result[marker].append(log)
 
             if "Departure" in log:
-                output.departure_time = parse_time(logs[index + 4: index + 7])
+                output.departure_time = parse_time([departure_data[0]] + logs[index + 4: index + 7])
 
             elif "Arrival" in log:
-                output.arrival_time = parse_time(logs[index + 4: index + 7])
+                output.arrival_time = parse_time([arrival_data[0]] + logs[index + 4: index + 7])
 
             tracker += 1
     final = []
@@ -134,11 +138,14 @@ def parse_flight_telemetry(logs):
     return output
 
 def parse_time(time_array):
-    output = dateparser.parse(time_array.join(" "))
-    print(time_array, time_array.join(" "), output)
+    output = dateparser.parse(" ".join(time_array))
+    output = output.astimezone(DT.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return output
 
 def parse_registration_information(titles, subtitles, table):
+    if table == None or len(table) == 0:
+        return None
+    
     table = table[0].text.strip()
     table = re.split(r'\s+', table)
     parsed_contents = []

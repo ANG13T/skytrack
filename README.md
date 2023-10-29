@@ -8,19 +8,10 @@ Find information about any airplane given a specific identifier
     - latest flown aircraft
 - get general avosint information
 - get atc frequency info of airport
-- airport webcam links
-- get airport diagram
 - enter identifier of aircraft or registration or tail number
 
 # APIs Used
-
-https://weathercams.faa.gov/map/-158.51042,58.49937,-153.28368,59.74111/cameraSite/439/summary
-
-https://airportwebcams.net/igiugig-airport-webcam/
-
-https://aviationstack.com/documentation
-
-metar (in progress for to and from)
+metar (done)
 
 airport information (done)
 
@@ -33,9 +24,6 @@ jet photos (done)
 wikipedia (done)
 
 opensky (done)
-
-Total: 9
-Done: 5
 
 # Set Up
 
@@ -101,11 +89,13 @@ Jinja2 and FPDF:
 https://stackoverflow.com/questions/44054938/python-jinja2-putting-all-html-from-python-into-one-pdf-rather-than-multipl
 
 finish:
-- implement all data sources
+
+- print output of osint in a pretty way
+
 - generate PDF
-- make menu flow
-- init status updates
-- format data visualization
+- format data visualization from telemetry
+- run additional tests
+
 - write README
 - make cool banner and icon
 - share on Linkedin, Reddit, GitHub, Twitter, and Discord
