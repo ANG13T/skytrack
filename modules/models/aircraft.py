@@ -137,20 +137,58 @@ class Aircraft:
         else:
             return ""
 
-    def print_flight_history(self, history):
+    def get_flight_history(self, history):
         if history == None or len(history) == 0:
             return None
         return history
 
-    def print_flight_photos(self, photos):
+    def get_flight_photos(self, photos):
         if photos == None or len(photos) == 0:
             return None
 
         if len(photos) > 1:
-            print("\n".join(photos))
-            "\n".join(photos)
+            return "\n" + "\n".join(photos)
         else:
-            return photos[0]
+            return "\n" + photos[0]
+
+    def parse_flight_log(self, log):
+        date = log[0]
+        duration = log[-2:]
+        aircraft = log[-3]
+        airports_info = log[1:len(log) - 3]
+        departure = " ".join(airports_info[:6])
+        arrival = " ".join(airports_info[6:])
+        return [date, departure, arrival, aircraft, duration]
+
+    def print_flight_history(self, history):
+        table_title = f"Flight History for {self.Registration} ✈️"
+        table = Table(title=table_title, show_footer=False)
+        table_centered = Align.left(table)
+
+        with Live(table_centered, console=console,
+                screen=False):
+            table.add_column(
+                "Date", no_wrap=True)
+            table.add_column(
+                "Departure", no_wrap=True)
+            table.add_column(
+                "Arrival", no_wrap=True)
+            table.add_column(
+                "Aircraft", no_wrap=True)
+            table.add_column(
+                "Duration", no_wrap=True)
+
+            for log in history:
+                if len(content) > 0:
+                    log = self.parse_flight_log(content)
+                    if len(log) == 5:
+                        table.add_row(log[0], log[1], log[2], log[3], log[4])
+
+            table.width = None
+
+        console.print("\n")
+        console.print(table)
+
 
     def print(self):
         # allow option to see all flight history
@@ -186,7 +224,7 @@ class Aircraft:
             "Test Registration", self.Test_Registration))
         contents.append(self.get_row_content("Registered", self.Registered))
         contents.append(self.get_row_content(
-            "Registration_Valid_Until", self.Registration_Valid_Until))
+            "Registration Valid Until", self.Registration_Valid_Until))
         contents.append(self.get_row_content("Status", self.Status))
         contents.append(self.get_row_content("Built", self.Built))
         contents.append(self.get_row_content(
@@ -202,9 +240,8 @@ class Aircraft:
             "Category Description", self.Category_Description))
         contents.append(self.get_row_content("Wiki Link", self.Wiki_Link))
         contents.append(self.get_row_content(
-            "Photos", self.print_flight_photos(self.Photos)))
-        contents.append(self.get_row_content(
-            "Flight History Preview", self.print_flight_history(self.History)))
+            "Photos", self.get_flight_photos(self.Photos)))
+        
         # contents.append(self.get_row_content("Telemetry", self.Telemetry))
         # contents.append(self.get_row_content(
         #     "Registration Details", self.Registration_Details))
@@ -217,6 +254,9 @@ class Aircraft:
         #     "Departure Metar", self.Departure_Metar))
         # contents.append(self.get_row_content(
         #     "Arrival Metar", self.Arrival_Metar))
+
+        # contents.append(self.get_row_content(
+        #     "Flight History Preview", self.print_flight_history(self.History)))
 
         with Live(table_centered, console=console,
                   screen=False):
@@ -231,3 +271,5 @@ class Aircraft:
 
         console.print("\n")
         console.print(table)
+
+        self.print_flight_history(self.History)

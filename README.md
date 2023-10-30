@@ -54,17 +54,6 @@ Use the following to learn about Aircraft registration numbers:
 https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/special_nnumbers
 
 
-def get_airport_list():
-	print('Getting Airport Data.....')
-	package = Package('https://datahub.io/core/airport-codes/datapackage.json')
-	for resource in package.resources:
-	    if resource.descriptor['datahub']['type'] == 'derived/csv':
-	        data = resource.read(keyed=True)
-	        print('Got Airport Data.....')
-	        return data
-	return -1
-
-
 # Features 
 - tail to ICAO
 - get plane information
