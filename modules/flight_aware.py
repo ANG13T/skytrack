@@ -31,8 +31,10 @@ BASE_URL = "https://www.flightaware.com"
 URL = "https://www.flightaware.com/live/flight/"
 REGISTRATION_URL = "https://www.flightaware.com/resources/registration/"
 
+
 def get_flightaware_data(tail_value):
     updated_url = URL + tail_value
+    flight_history_url = ""
     registration_tail_url = REGISTRATION_URL + tail_value
     driver = webdriver.Firefox()
     driver.get(updated_url)
@@ -44,7 +46,7 @@ def get_flightaware_data(tail_value):
     past_flights = soup.find(id="flightPageActivityLog").text.strip()
     words = re.split(r'\s+', past_flights)
     history = parse_past_flights(words)
-    items = soup.find_all("a") #  TODO: optimize
+    items = soup.find_all("a")  # TODO: optimize
 
     for item in items:
         if "View track log" in str(item):
@@ -81,9 +83,11 @@ def get_flightaware_data(tail_value):
     subtitle = soup.find_all("div", {"class": "medium-3"})
     history_table = soup.find_all("div", {"class": "airportBoardContainer"})
 
-    registration = parse_registration_information(title_1, subtitle, history_table)
+    registration = parse_registration_information(
+        title_1, subtitle, history_table)
 
     return {"history": history, "telemetry": telem, "registration": registration, "arrival": arrival_data, "departure": departure_data}
+
 
 def parse_past_flights(flights):
     result = []
@@ -99,15 +103,18 @@ def parse_past_flights(flights):
             result[marker].append(flight)
     return FlightHistory(result)
 
+
 def get_departure_airport(history):
-        if len(history) == 0:
-            return None
-        return history[0]
+    if len(history) == 0:
+        return None
+    return history[0]
+
 
 def get_arrival_airport(history):
-        if len(history) == 0:
-            return None
-        return history[len(history) - 1]
+    if len(history) == 0:
+        return None
+    return history[len(history) - 1]
+
 
 def parse_flight_telemetry(logs, arrival_data, departure_data):
     result = []
@@ -124,10 +131,12 @@ def parse_flight_telemetry(logs, arrival_data, departure_data):
             result[marker].append(log)
 
             if "Departure" in log:
-                output.departure_time = parse_time([departure_data[0]] + logs[index + 4: index + 7])
+                output.departure_time = parse_time(
+                    [departure_data[0]] + logs[index + 4: index + 7])
 
             elif "Arrival" in log:
-                output.arrival_time = parse_time([arrival_data[0]] + logs[index + 4: index + 7])
+                output.arrival_time = parse_time(
+                    [arrival_data[0]] + logs[index + 4: index + 7])
 
             tracker += 1
     final = []
@@ -137,15 +146,17 @@ def parse_flight_telemetry(logs, arrival_data, departure_data):
     output.telemetry = final
     return output
 
+
 def parse_time(time_array):
     output = dateparser.parse(" ".join(time_array))
     output = output.astimezone(DT.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return output
 
+
 def parse_registration_information(titles, subtitles, table):
     if table == None or len(table) == 0:
         return None
-    
+
     table = table[0].text.strip()
     table = re.split(r'\s+', table)
     parsed_contents = []
@@ -173,6 +184,7 @@ def get_airport_code(airport):
         if value == "-":
             return airport[index + 1]
     return None
+
 
 def get_airport_name(airport):
     if airport == None:

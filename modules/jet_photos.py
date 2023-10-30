@@ -14,7 +14,7 @@ def get_jetphotos_data(tail_value):
     updated_url = URL + tail_value
     page = requests.get(updated_url)
     soup = BeautifulSoup(page.content, "html.parser")
-    images = soup.find_all("img", class_="result__photo")
+    images = soup.find_all("img", {"class": "result__photo"})
 
     if len(images) == 0:
         return []
@@ -23,4 +23,7 @@ def get_jetphotos_data(tail_value):
     for image in images:
         result.append("https:" + image['src'])
 
-    return result[:3]
+    if len(result) > 3:
+        return result[:3]
+    else:
+        return result

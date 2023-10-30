@@ -11,6 +11,7 @@ from modules.icao_tail import icao_to_tail, tail_to_icao
 
 console = Console()
 
+
 def osint_from_tail(tail_value):
     # 1. Get ICAO
     # 2. Get OpenSky
@@ -34,30 +35,35 @@ def osint_from_tail(tail_value):
         aircraft = get_wikipedia_data(aircraft, tail_value)
         console.log("[green]✓ Finish Fetching Wikipedia Data[/green]")
         console.log("[blue]✈️  Fetching Jet Photos Data[/blue]")
-        aircraft.photos = get_jetphotos_data(tail_value)
+        aircraft.Photos = get_jetphotos_data(tail_value)
         console.log("[green]✓ Finish Fetching Jet Photos Data[/green]")
         console.log("[blue]✈️  Fetching FlightAware Data[/blue]")
         flight_aware = get_flightaware_data(tail_value)
-        aircraft.history = flight_aware["history"]
-        aircraft.telemetry = flight_aware["telemetry"]
-        aircraft.registration_details = flight_aware["registration"]
+        aircraft.History = flight_aware["history"]
+        aircraft.Telemetry = flight_aware["telemetry"]
+        aircraft.Registration_Details = flight_aware["registration"]
         console.log("[green]✓ Finish Fetching FlightAware Data[/green]")
         console.log("[blue]✈️  Fetching Aviation Safety Data[/blue]")
-        aircraft.safety_data = get_aviation_safety_data(tail_value)
+        aircraft.Safety_Data = get_aviation_safety_data(tail_value)
         console.log("[green]✓ Finish Fetching Aviation Safety Data[/green]")
         console.log("[blue]✈️  Fetching Airport Data[/blue]")
         d_aiport_code = get_airport_code(flight_aware["departure"])
         d_airport_name = get_airport_name(flight_aware["departure"])
         a_aiport_code = get_airport_code(flight_aware["arrival"])
         a_airport_name = get_airport_name(flight_aware["arrival"])
-        aircraft.departure_airport = get_airport_info(d_aiport_code, d_airport_name)
-        aircraft.arrival_airport = get_airport_info(a_aiport_code, a_airport_name)
-        if aircraft.arrival_airport:
-            aircraft.arrival_metar = get_metar_data(aircraft.arrival_airport.ident, aircraft.telemetry.arrival_time)
-        if aircraft.departure_airport:
-            aircraft.departure_metar = get_metar_data(aircraft.departure_airport.ident, aircraft.telemetry.departure_time)
+        aircraft.Departure_Airport = get_airport_info(
+            d_aiport_code, d_airport_name)
+        aircraft.Arrival_Airport = get_airport_info(
+            a_aiport_code, a_airport_name)
+        if aircraft.Arrival_Airport:
+            aircraft.Arrival_Metar = get_metar_data(
+                aircraft.Arrival_Airport.ident, aircraft.Telemetry.arrival_time)
+        if aircraft.Departure_Metar:
+            aircraft.Departure_Metar = get_metar_data(
+                aircraft.Departure_Airport.ident, aircraft.Telemetry.departure_time)
         console.log("[green]Finish Fetching Airport Data[/green]")
         aircraft.print()
+
 
 def osint_from_icao(icao_value):
     osint_from_tail(icao_to_tail(icao_value))

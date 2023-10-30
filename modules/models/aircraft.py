@@ -127,7 +127,7 @@ class Aircraft:
         self.Arrival_Metar = arrival_metar
 
     def get_row_content(self, key, value):
-        if len(value) > 0:
+        if (not value == None) and len(value) > 0:
             content = value
             if str(value) == "false":
                 content = "Not Included"
@@ -136,6 +136,21 @@ class Aircraft:
             return f"[b white]{key}[/]: [blue]{content} [/]"
         else:
             return ""
+
+    def print_flight_history(self, history):
+        if history == None or len(history) == 0:
+            return None
+        return history
+
+    def print_flight_photos(self, photos):
+        if photos == None or len(photos) == 0:
+            return None
+
+        if len(photos) > 1:
+            print("\n".join(photos))
+            "\n".join(photos)
+        else:
+            return photos[0]
 
     def print(self):
         # allow option to see all flight history
@@ -186,15 +201,22 @@ class Aircraft:
         contents.append(self.get_row_content(
             "Category Description", self.Category_Description))
         contents.append(self.get_row_content("Wiki Link", self.Wiki_Link))
-        # contents.append(self.get_row_content("Photos", self.Photos))
-        # contents.append(self.get_row_content("History", self.History))
+        contents.append(self.get_row_content(
+            "Photos", self.print_flight_photos(self.Photos)))
+        contents.append(self.get_row_content(
+            "Flight History Preview", self.print_flight_history(self.History)))
         # contents.append(self.get_row_content("Telemetry", self.Telemetry))
-        # contents.append(self.get_row_content("Registration Details", self.Registration_Details))
+        # contents.append(self.get_row_content(
+        #     "Registration Details", self.Registration_Details))
         # contents.append(self.get_row_content("Safety Data", self.Safety_Data))
-        # contents.append(self.get_row_content("Departure Airport", self.Departure_Airport))
-        # contents.append(self.get_row_content("Arrival Airport", self.Arrival_Airport))
-        # contents.append(self.get_row_content("Departure Metar", self.Departure_Metar))
-        # contents.append(self.get_row_content("Arrival Metar", self.Arrival_Metar))
+        # contents.append(self.get_row_content(
+        #     "Departure Airport", self.Departure_Airport))
+        # contents.append(self.get_row_content(
+        #     "Arrival Airport", self.Arrival_Airport))
+        # contents.append(self.get_row_content(
+        #     "Departure Metar", self.Departure_Metar))
+        # contents.append(self.get_row_content(
+        #     "Arrival Metar", self.Arrival_Metar))
 
         with Live(table_centered, console=console,
                   screen=False):
@@ -207,6 +229,5 @@ class Aircraft:
 
             table.width = None
 
-        print("hi")
         console.print("\n")
         console.print(table)
