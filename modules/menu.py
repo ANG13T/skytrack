@@ -31,12 +31,8 @@ try:
             import modules.osint_menu
             rerun()
 
-        # if menu.menu_entry_index == 1:
-        #     import modules.passes_menu
-        #     rerun()
-
         if menu.menu_entry_index == 2:
-            import modules.decoder_menu
+            import modules.pdf_menu
             rerun()
 
         if option == 3:
@@ -46,6 +42,7 @@ try:
         # if menu.menu_entry_index == 3:
         #     about()
         #     rerun()
+        
         if option == 5:
             console.print("[bold][blue] Exiting...[/blue][/bold]")
             sleep(1)
