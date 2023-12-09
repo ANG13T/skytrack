@@ -67,76 +67,76 @@
                 <tbody>
                     <tr>
                         <td>ICAO24</td>
-                        <td>{{  icao   }}</td>
+                        <td>{{  aircraft.ICAO24   }}</td>
                     </tr>
                     <tr>
                         <td>Registration</td>
-                        <td>{{  registration   }}</td>
+                        <td>{{  aircraft.Registration   }}</td>
                     </tr>
             
                     <tr>
                         <td>Manufacturer ICAO</td>
-                        <td>{{  man_icao  }}</td>
+                        <td>{{  aircraft.Manufacturer_ICAO  }}</td>
                     </tr>
             
                     <tr>
                         <td>Manufacturer Name</td>
-                        <td>{{  man_name  }}</td>
+                        <td>{{  aircraft.Manufacturer_Name  }}</td>
                     </tr>
             
                     <tr>
                         <td>Model</td>
-                        <td>{{   model   }}</td>
+                        <td>{{   aircraft.Model   }}</td>
                     </tr>
             
                     <tr>
                         <td>Type Code</td>
-                        <td>{{   type_code   }}</td>
+                        <td>{{   aircraft.Type_Code   }}</td>
                     </tr>
             
                     <tr>
                         <td>Serial Number</td>
-                        <td>{{   serial_number   }}</td>
+                        <td>{{   aircraft.Serial_Number   }}</td>
                     </tr>
             
                     <tr>
                         <td>ICAO Aircraft Type</td>
-                        <td>{{   icao_aircraft_type   }}</td>
+                        <td>{{   aircraft.ICAO_Aircraft_Type   }}</td>
                     </tr>
             
                     <tr>
                         <td>Owner</td>
-                        <td>{{   owner   }}</td>
+                        <td>{{   aircraft.Owner   }}</td>
                     </tr>
             
                     <tr>
                         <td>Registration Valid Until</td>
-                        <td>{{   reg_valid_until   }}</td>
+                        <td>{{   aircraft.Registration_Valid_Until   }}</td>
                     </tr>
             
                     <tr>
                         <td>Built</td>
-                        <td>{{   built   }}</td>
+                        <td>{{   aircraft.Built   }}</td>
                     </tr>
             
                     <tr>
                         <td>Engines</td>
-                        <td>{{   engines   }}</td>
+                        <td>{{   aircraft.Engines   }}</td>
                     </tr>
             
                     <tr>
                         <td>Modes</td>
-                        <td>{{   modes   }}</td>
+                        <td>{{   aircraft.Modes   }}</td>
                     </tr>
             
                     <tr>
                         <td>ADS-B</td>
-                        <td>{{   adsb   }}</td>
+                        <td>{{   aircraft.ADSB   }}</td>
                     </tr>
             
                     <tr>
                         <td>ACARS</td>
-                        <td>{{   acars   }}</td>
+                        <td>{{   aircraft.ACARS   }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -159,7 +159,8 @@
             </tr>
         </thead>
         <tbody>
-            {% for date, departure, arrival, aircraft, duration in row.iteritems() %}
+            {% if aircraft.History != None %}
+            {% for date, departure, arrival, aircraft, duration in aircraft.History.iteritems() %}
             <tr>
                 <td>{{   date   }}</td>
                 <td>{{   departure   }}</td>
@@ -168,6 +169,7 @@
                 <td>{{   duration   }}</td>
             </tr>
             {% endfor %}
+            {% endif %}
         </tbody>
     </table>
 

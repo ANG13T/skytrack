@@ -9,6 +9,10 @@ from modules.models.aircraft import Aircraft
 from rich.console import Console
 from modules.icao_tail import icao_to_tail, tail_to_icao
 
+import jinja2
+import pandas as pd
+from xhtml2pdf import pisa
+
 console = Console()
 
 
@@ -63,6 +67,16 @@ def osint_from_tail(tail_value, pdf=False):
                 aircraft.Departure_Airport.ident, aircraft.Telemetry.departure_time)
     console.log("[green]Finish Fetching Airport Data[/green]")
     aircraft.print()
+
+    if pdf == True:
+        html = jinja2.Environment(  
+        loader=jinja2.FileSystemLoader(searchpath='templates')).get_template(
+            'osint_report.html').render(aircraft=aircraft)
+
+        with open('report.pdf', "w+b") as out_pdf_file_handle:
+            pisa.CreatePDF(
+                src=html, 
+                dest=out_pdf_file_handle)
 
 
 def osint_from_icao(icao_value):
