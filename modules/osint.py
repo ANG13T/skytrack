@@ -79,5 +79,5 @@ def osint_from_tail(tail_value, pdf=False):
                 dest=out_pdf_file_handle)
 
 
-def osint_from_icao(icao_value):
-    osint_from_tail(icao_to_tail(icao_value))
+def osint_from_icao(icao_value, pdf = False):
+    osint_from_tail(icao_to_tail(icao_value), pdf)

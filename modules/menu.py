@@ -35,9 +35,9 @@ try:
         #     import modules.passes_menu
         #     rerun()
 
-        # if menu.menu_entry_index == 2:
-        #     import modules.decoder_menu
-        #     rerun()
+        if menu.menu_entry_index == 2:
+            import modules.decoder_menu
+            rerun()
 
         if option == 3:
             import modules.icao_tail_menu
