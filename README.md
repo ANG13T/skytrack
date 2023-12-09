@@ -78,13 +78,8 @@ Jinja2 and FPDF:
 https://stackoverflow.com/questions/44054938/python-jinja2-putting-all-html-from-python-into-one-pdf-rather-than-multipl
 
 finish:
-
-- print output of osint in a pretty way
-
 - generate PDF
-- format data visualization from telemetry
-- run additional tests
-
 - write README
+
 - make cool banner and icon
 - share on Linkedin, Reddit, GitHub, Twitter, and Discord

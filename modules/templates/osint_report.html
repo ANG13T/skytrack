@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Aircraft OSINT Report</title>
 
     <style>
         .styled-table {
             border-collapse: collapse;
-            margin: 25px 25px;
+            margin: 0px 25px;
             font-size: 0.9em;
             font-family: sans-serif;
-            min-width: 600px;
+            min-width: 700px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
         }
 
@@ -37,11 +37,26 @@
         .styled-table tbody tr:last-of-type {
             border-bottom: 2px solid #009879;
         }
+
+        .main {
+            display: flex;
+        }
+
+        .plane-image {
+            max-width: 600px;
+            margin-bottom: 25px;
+        }
+
+        .title {
+            margin-left: 26px;
+            font-family: sans-serif;
+            font-size: 25px;
+        }
     </style>
 </head>
 <body>
-    <h3>Flight Report for N195PS</h3>
-    <div>
+    <h3 class="title">Flight Report for N195PS</h3>
+    <div class="main">
         <div class="table">
             <table class="styled-table">
                 <thead>
@@ -52,88 +67,88 @@
                 <tbody>
                     <tr>
                         <td>ICAO24</td>
-                        <td>6000</td>
+                        <td>{{  icao   }}</td>
                     </tr>
                     <tr>
                         <td>Registration</td>
-                        <td>5150</td>
+                        <td>{{  registration   }}</td>
                     </tr>
             
                     <tr>
                         <td>Manufacturer ICAO</td>
-                        <td>5150</td>
+                        <td>{{  man_icao  }}</td>
                     </tr>
             
                     <tr>
                         <td>Manufacturer Name</td>
-                        <td>5150</td>
+                        <td>{{  man_name  }}</td>
                     </tr>
             
                     <tr>
                         <td>Model</td>
-                        <td>5150</td>
+                        <td>{{   model   }}</td>
                     </tr>
             
                     <tr>
                         <td>Type Code</td>
-                        <td>5150</td>
+                        <td>{{   type_code   }}</td>
                     </tr>
             
                     <tr>
                         <td>Serial Number</td>
-                        <td>5150</td>
+                        <td>{{   serial_number   }}</td>
                     </tr>
             
                     <tr>
                         <td>ICAO Aircraft Type</td>
-                        <td>5150</td>
+                        <td>{{   icao_aircraft_type   }}</td>
                     </tr>
             
                     <tr>
                         <td>Owner</td>
-                        <td>5150</td>
+                        <td>{{   owner   }}</td>
                     </tr>
             
                     <tr>
                         <td>Registration Valid Until</td>
-                        <td>5150</td>
+                        <td>{{   reg_valid_until   }}</td>
                     </tr>
             
                     <tr>
                         <td>Built</td>
-                        <td>5150</td>
+                        <td>{{   built   }}</td>
                     </tr>
             
                     <tr>
                         <td>Engines</td>
-                        <td>5150</td>
+                        <td>{{   engines   }}</td>
                     </tr>
             
                     <tr>
                         <td>Modes</td>
-                        <td>5150</td>
+                        <td>{{   modes   }}</td>
                     </tr>
             
                     <tr>
                         <td>ADS-B</td>
-                        <td>5150</td>
+                        <td>{{   adsb   }}</td>
                     </tr>
             
                     <tr>
                         <td>ACARS</td>
-                        <td>5150</td>
+                        <td>{{   acars   }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="photos">
-            <img src="https://cdn.jetphotos.com/400/6/63245_1659335503.jpg" />
+            <img src="https://cdn.jetphotos.com/400/6/63245_1659335503.jpg" class="plane-image"/>
         </div>
     </div>
     
 
-    <h3>Flight History</h3>
-    <table class="styled-table" style="width: 800px !important;">
+    <h3 class="title" style="margin-top: 40px;">Flight History</h3>
+    <table class="styled-table" style="width: 1200px !important; margin-bottom: 30px;">
         <thead>
             <tr>
                 <th>Date</th>
@@ -144,13 +159,15 @@
             </tr>
         </thead>
         <tbody>
+            {% for date, departure, arrival, aircraft, duration in row.iteritems() %}
             <tr>
-                <td>ICAO24</td>
-                <td>6000</td>
-                <td>6000</td>
-                <td>6000</td>
-                <td>6000</td>
+                <td>{{   date   }}</td>
+                <td>{{   departure   }}</td>
+                <td>{{   arrival   }}</td>
+                <td>{{   aircraft   }}</td>
+                <td>{{   duration   }}</td>
             </tr>
+            {% endfor %}
         </tbody>
     </table>
 
