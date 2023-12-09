@@ -12,7 +12,7 @@ from modules.icao_tail import icao_to_tail, tail_to_icao
 console = Console()
 
 
-def osint_from_tail(tail_value):
+def osint_from_tail(tail_value, pdf=False):
     # 1. Get ICAO
     # 2. Get OpenSky
     # 3. Get Wikipedia
