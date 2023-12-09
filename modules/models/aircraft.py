@@ -153,7 +153,7 @@ class Aircraft:
 
     def parse_flight_log(self, log):
         date = log[0]
-        duration = log[-2:]
+        duration = ":".join(log[-2:])
         aircraft = log[-3]
         airports_info = log[1:len(log) - 3]
         departure = " ".join(airports_info[:6])
@@ -164,6 +164,7 @@ class Aircraft:
         table_title = f"Flight History for {self.Registration} ✈️"
         table = Table(title=table_title, show_footer=False)
         table_centered = Align.left(table)
+        console =  Console()
 
         with Live(table_centered, console=console,
                 screen=False):
@@ -179,15 +180,14 @@ class Aircraft:
                 "Duration", no_wrap=True)
 
             for log in history:
-                if len(content) > 0:
-                    log = self.parse_flight_log(content)
+                if log and len(log) > 0:
+                    log = self.parse_flight_log(log)
                     if len(log) == 5:
                         table.add_row(log[0], log[1], log[2], log[3], log[4])
 
             table.width = None
 
         console.print("\n")
-        console.print(table)
 
 
     def print(self):
@@ -242,22 +242,6 @@ class Aircraft:
         contents.append(self.get_row_content(
             "Photos", self.get_flight_photos(self.Photos)))
         
-        # contents.append(self.get_row_content("Telemetry", self.Telemetry))
-        # contents.append(self.get_row_content(
-        #     "Registration Details", self.Registration_Details))
-        # contents.append(self.get_row_content("Safety Data", self.Safety_Data))
-        # contents.append(self.get_row_content(
-        #     "Departure Airport", self.Departure_Airport))
-        # contents.append(self.get_row_content(
-        #     "Arrival Airport", self.Arrival_Airport))
-        # contents.append(self.get_row_content(
-        #     "Departure Metar", self.Departure_Metar))
-        # contents.append(self.get_row_content(
-        #     "Arrival Metar", self.Arrival_Metar))
-
-        # contents.append(self.get_row_content(
-        #     "Flight History Preview", self.print_flight_history(self.History)))
-
         with Live(table_centered, console=console,
                   screen=False):
             table.add_column(
@@ -270,6 +254,5 @@ class Aircraft:
             table.width = None
 
         console.print("\n")
-        console.print(table)
 
         self.print_flight_history(self.History)

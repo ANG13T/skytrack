@@ -36,7 +36,7 @@ def get_flightaware_data(tail_value):
     updated_url = URL + tail_value
     flight_history_url = ""
     registration_tail_url = REGISTRATION_URL + tail_value
-    driver = webdriver.Firefox()
+    driver = webdriver.Chrome()
     driver.get(updated_url)
     time.sleep(3)
     page = driver.page_source

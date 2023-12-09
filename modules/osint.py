@@ -61,8 +61,8 @@ def osint_from_tail(tail_value):
         if aircraft.Departure_Metar:
             aircraft.Departure_Metar = get_metar_data(
                 aircraft.Departure_Airport.ident, aircraft.Telemetry.departure_time)
-        console.log("[green]Finish Fetching Airport Data[/green]")
-        aircraft.print()
+    console.log("[green]Finish Fetching Airport Data[/green]")
+    aircraft.print()
 
 
 def osint_from_icao(icao_value):
