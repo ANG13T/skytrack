@@ -31,7 +31,7 @@ try:
             import modules.osint_menu
             rerun()
 
-        if menu.menu_entry_index == 2:
+        if option == 2:
             import modules.pdf_menu
             rerun()
 
@@ -39,10 +39,10 @@ try:
             import modules.icao_tail_menu
             rerun()
 
-        # if menu.menu_entry_index == 3:
-        #     about()
-        #     rerun()
-        
+        if option == 4:
+            import modules.about
+            rerun()
+
         if option == 5:
             console.print("[bold][blue] Exiting...[/blue][/bold]")
             sleep(1)
