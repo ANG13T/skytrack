@@ -45,6 +45,7 @@ try:
 
 except KeyboardInterrupt:
     print("\n")
+    console = Console()
     console.print("[bold][cyan] Exiting skytrack [/cyan][/bold]")
     sleep(1)
 

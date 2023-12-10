@@ -6,11 +6,13 @@ DroneXtract is a comprehensive digital forensics suite for DJI drones made with 
 <img alt="DroneXtract logo" width="600" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/Preview.png">
 
 ## Information Gathered
-- 
-- 
--
--
--
+- Tail Number 🛫
+- Aircraft Type ⚙️
+- ICAO24 Designation 🔎
+- Manufacturer Details 🛠
+- Flight Logs 📄 
+- Aircraft Owner ✈️
+- Model 🛩
 - Much more!
 
 ## Features
@@ -31,28 +33,44 @@ Additionally, the extracted data can be exported to four different file formats.
 
 <img alt="DroneXtract logo" height="300" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-2.png">
 
-### Tail Number (aka N-Number) to ICAO Converter
-The telemetry visualization suite contains a flight path mapping generator and a telemetry graph visualizer.
-The flight path mapping generator creates an image of a map indicating the locations the drone traveled to enroute and the path it took.
-The telemetry graph visualizer plots a graph for each of the relevant telemetry or sensor values to be used for auditing purposes. 
+### Tail Number to ICAO Converter
+There are two standard identification formats for specifying aircraft: Tail Number and ICAO Designation. The tail number (aka N-Number) is a alphanumerical ID starting with the letter "N" used to identify aircraft. The ICAO type designation is a six character fixed-length ID in the hexadecimal format. 
+Both standards are highly pertinent for aircraft reconnnaisance as they both can be used to search for a specific aircraft in data sources.
+However, converting them from one format to another can be rather cumbersome as it follows a tricky algorithm. To streamline this process, skytrack includes a standard converter. 
 
-<img alt="DroneXtract logo" width="600" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-3.png">
+### Explaination
+
+ICAO and Tail Numbers follow a mapping system like the following:
+
+ICAO address	N-Number (Tail Number)
+a00001	        N1
+a00002	        N1A
+a00003	        N1AA
+
+
 
 #### Disclaimer
 Only works for United States aircraft registrations
 The USA hex to ICAO tail number only works for USA registered aircraft
 
-Use the following to learn about Aircraft registration numbers:
-https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/special_nnumbers
+You can learn more about aircraft registration numbers [here](https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/special_nnumbers)
+
+
+
+
+<img alt="DroneXtract logo" width="600" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-3.png">
+
 
 ## Usage
-To build from source, you will need Go installed.
+To run skytrack on your machine, follow the steps below:
 
 ```bash
-$ export GO111MODULE=on
-$ go get ./...
-$ go run main.go
+$ git clone https://github.com/ANG13T/skytrack
+$ cd skytrack
+$ python skytrack.py
 ```
+
+skytrack works best for Python version 3.
 
 ## Data Sources & APIs Used
 [https://www.icao.int/publications/doc8643/pages/search.aspx](https://www.icao.int/publications/doc8643/pages/search.aspx)
@@ -82,19 +100,6 @@ DroneXtract is open to any contributions. Please fork the repository and make a 
 - get general avosint information
 - get atc frequency info of airport
 - enter identifier of aircraft or registration or tail number
-
-## Additional Info (What is ICAO? What is a Tail Number?)
-Convert USA hex to ICAO
-
-ICAO and Tail Numbers follow a mapping system like the following:
-
-ICAO address	N-Number
-a00001	N1
-a00002	N1A
-a00003	N1AA
-
-## How does Conversion work?
-ICAO Designations are represented by hexadecimal and have a fixed length of 6. This tool only supports U.S. ICAO designations which are denoted by the start letter 'a'. 
 
 ## Support
 If you enjoyed DroneXtract, please consider [becoming a sponsor](https://github.com/sponsors/ANG13T) in order to fund my future projects. 
