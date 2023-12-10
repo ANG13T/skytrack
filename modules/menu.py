@@ -1,7 +1,6 @@
 from modules import *
 from time import sleep
 from modules.rerun import rerun
-# from modules.about import about
 from rich.console import Console
 from modules.banner import *
 from modules.option import *

@@ -89,5 +89,4 @@ def get_airport_info(airport_ident, airport_name):
 
                 return airport
 
-    print("slipping")
     return None
