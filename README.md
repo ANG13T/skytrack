@@ -34,82 +34,73 @@ skytrack works best for Python version 3.
 <img alt="skytrack preview" width="500" src="https://github.com/ANG13T/skytrack/blob/main/assets/data/skytrack_preview.png">
 
 ## Features
-DroneXtract features four main suites for drone forensics and auditing. They include the following:
+skytrack features three main functions for aircraft information gathering and display options. They include the following:
 
 ### Aircraft Reconnaissance & OSINT
-You can visualize and extract information from DJI file formats such as CSV, KML, and GPX using the parsing tool.
-The parsed information can be saved into an alternative file format when inputted an output file path.
-The image below includes an example of a parsed file output and the type of data extracted from the file.
+skytrack obtains general information about the aircraft given its tail number or ICAO designator.
+The tool sources this information using several reliable data sets.
+Once the data is collected, it is displayed in the terminal within a table layout.
 
 <img alt="DroneXtract logo" height="300" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-1.png">
 
 
 ### PDF Aircraft Information Report
-Steganography refers to the process of revealing information stored within files.
-The DroneXtract steganography suite allows you to extract telemetry and valuable data from image and video formats.
-Additionally, the extracted data can be exported to four different file formats.
+skytrack also enables you the save the collected aircraft information into a PDF.
+The PDF includes all the aircraft data in a visual layout for later reference.
 
 <img alt="DroneXtract logo" height="300" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-2.png">
 
 ### Tail Number to ICAO Converter
-There are two standard identification formats for specifying aircraft: Tail Number and ICAO Designation. The tail number (aka N-Number) is a alphanumerical ID starting with the letter "N" used to identify aircraft. The ICAO type designation is a six character fixed-length ID in the hexadecimal format. 
-Both standards are highly pertinent for aircraft reconnnaisance as they both can be used to search for a specific aircraft in data sources.
+There are two standard identification formats for specifying aircraft: Tail Number and ICAO Designation. The tail number (aka N-Number) is an alphanumerical ID starting with the letter "N" used to identify aircraft. The ICAO type designation is a six-character fixed-length ID in the hexadecimal format. 
+Both standards are highly pertinent for aircraft reconnaissance as they both can be used to search for a specific aircraft in data sources.
 However, converting them from one format to another can be rather cumbersome as it follows a tricky algorithm. To streamline this process, skytrack includes a standard converter. 
 
-### Explaination
+<details>
+<summary><bold>Further Explanation</bold></summary>
 
-ICAO and Tail Numbers follow a mapping system like the following:
+<br />
 
-ICAO address	N-Number (Tail Number)
-a00001	        N1
-a00002	        N1A
-a00003	        N1AA
+<p>ICAO and Tail Numbers follow a mapping system like the following:</p>
 
-
-
-#### Disclaimer
-Only works for United States aircraft registrations
-The USA hex to ICAO tail number only works for USA registered aircraft
+<p>ICAO address	N-Number (Tail Number)</p>
+<p>a00001	        N1</p>
+<p>a00002	        N1A</p>
+<p>a00003	        N1AA</p>
 
 You can learn more about aircraft registration numbers [here](https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/special_nnumbers)
 
+</details>
+
+> :warning:  Converter only works for USA-registered aircraft
 
 <img alt="DroneXtract logo" width="600" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-3.png">
 
 ## Data Sources & APIs Used
-[https://www.icao.int/publications/doc8643/pages/search.aspx](https://www.icao.int/publications/doc8643/pages/search.aspx)
-This is the most up to date JSON data file retrieved by the official ICAO Aircraft Type Designators listings webpage
+[ICAO Aircraft Type Designators Listings](https://www.icao.int/publications/doc8643/pages/search.aspx)
 
-metar (done)
+[FlightAware](flightaware.com)
 
-airport information (done)
+[Wikipedia](wikipedia.org)
 
-aviation safety (done)
+[Aviation Safety Website](https://aviation-safety.net)
 
-flight aware (done)
+[Jet Photos Website](https://www.jetphotos.com)
 
-jet photos (done)
+[OpenSky API](https://opensky-network.org/datasets/metadata/aircraftDatabase.csv)
 
-wikipedia (done)
+[Aviation Weather METAR](https://aviationweather.gov)
 
-opensky (done)
+[Airport Codes Dataset](https://pkgstore.datahub.io/core/airport-codes/airport-codes/archive/dfadb79d7ba34a49242332f2eaf4f1b0/airport-codes.csv)
 
 ## Contributing
 skytrack is open to any contributions. Please fork the repository and make a pull request with the features or fixes you want to implement.
 
 ## Upcoming
-- Get latest flown airports
-- Get airport information
-- latest flown aircraft
-- get general avosint information
-- get atc frequency info of airport
-- enter identifier of aircraft or registration or tail number
+- Obtain Latest Flown Airports
+- Obtain Airport Information
+- Obtain ATC Frequency Information
 
 ## Support
 If you enjoyed skytrack, please consider [becoming a sponsor](https://github.com/sponsors/ANG13T) or donating on [buymeacoffee](https://www.buymeacoffee.com/angelinatsuboi) in order to fund my future projects. 
 
 To check out my other works, visit my [GitHub profile](https://github.com/ANG13T).
-
-TODO
-- testing
-- share on Linkedin, Reddit, GitHub, Twitter, and Discord
