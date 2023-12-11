@@ -1,5 +1,11 @@
+
+
+## What is Plane Spotting?
+Plane spotting is the art of 
+
 ## About
-DroneXtract is a comprehensive digital forensics suite for DJI drones made with Golang. It can be used to analyze drone sensor values and telemetry data, visualize drone flight maps, audit for criminal activity, and extract pertinent data within multiple file formats. 
+skytrack is a command-line based plane spotting and aircraft OSINT reconnaissance tool made using Python.
+It can gather aircraft information using various data sources, generate a PDF report for a specified aircraft, and convert between ICAO and Tail Number designations. 
 
 ## Preview
 
@@ -18,7 +24,7 @@ DroneXtract is a comprehensive digital forensics suite for DJI drones made with 
 ## Features
 DroneXtract features four main suites for drone forensics and auditing. They include the following:
 
-### DJI File Parsing
+### Aircraft Reconnaissance & OSINT
 You can visualize and extract information from DJI file formats such as CSV, KML, and GPX using the parsing tool.
 The parsed information can be saved into an alternative file format when inputted an output file path.
 The image below includes an example of a parsed file output and the type of data extracted from the file.
@@ -26,7 +32,7 @@ The image below includes an example of a parsed file output and the type of data
 <img alt="DroneXtract logo" height="300" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-1.png">
 
 
-### Steganography
+### PDF Aircraft Information Report
 Steganography refers to the process of revealing information stored within files.
 The DroneXtract steganography suite allows you to extract telemetry and valuable data from image and video formats.
 Additionally, the extracted data can be exported to four different file formats.
@@ -54,8 +60,6 @@ Only works for United States aircraft registrations
 The USA hex to ICAO tail number only works for USA registered aircraft
 
 You can learn more about aircraft registration numbers [here](https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/special_nnumbers)
-
-
 
 
 <img alt="DroneXtract logo" width="600" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-3.png">

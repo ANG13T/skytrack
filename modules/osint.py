@@ -70,10 +70,10 @@ def osint_from_tail(tail_value, pdf=False):
 
     if pdf == True:
         html = jinja2.Environment(  
-        loader=jinja2.FileSystemLoader(searchpath='templates')).get_template(
-            'osint_report.html').render(aircraft=aircraft)
+        loader=jinja2.FileSystemLoader(searchpath='')).get_template(
+            'osint_report.html').render(aircraft=aircraft, history=aircraft.parsed_flight_history())
 
-        with open('report.pdf', "w+b") as out_pdf_file_handle:
+        with open('skytrack_report.pdf', "w+b") as out_pdf_file_handle:
             pisa.CreatePDF(
                 src=html, 
                 dest=out_pdf_file_handle)

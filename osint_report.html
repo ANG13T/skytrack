@@ -38,10 +38,6 @@
             border-bottom: 2px solid #009879;
         }
 
-        .main {
-            display: flex;
-        }
-
         .plane-image {
             max-width: 600px;
             margin-bottom: 25px;
@@ -51,6 +47,11 @@
             margin-left: 26px;
             font-family: sans-serif;
             font-size: 25px;
+        }
+
+        .photos {
+            margin-left: 26px;
+            margin-top: 30px;
         }
     </style>
 </head>
@@ -142,7 +143,9 @@
             </table>
         </div>
         <div class="photos">
-            <img src="https://cdn.jetphotos.com/400/6/63245_1659335503.jpg" class="plane-image"/>
+            {% for photo in aircraft.Photos %}
+                <img src={{ photo }} class="plane-image"/>
+            {% endfor %}
         </div>
     </div>
     
@@ -159,17 +162,15 @@
             </tr>
         </thead>
         <tbody>
-            {% if aircraft.History != None %}
-            {% for date, departure, arrival, aircraft, duration in aircraft.History.iteritems() %}
+            {% for log in history %}
             <tr>
-                <td>{{   date   }}</td>
-                <td>{{   departure   }}</td>
-                <td>{{   arrival   }}</td>
-                <td>{{   aircraft   }}</td>
-                <td>{{   duration   }}</td>
+                <td>{{   log[0]   }}</td>
+                <td>{{   log[1]   }}</td>
+                <td>{{   log[2]   }}</td>
+                <td>{{   log[3]  }}</td>
+                <td>{{   log[4]   }}</td>
             </tr>
             {% endfor %}
-            {% endif %}
         </tbody>
     </table>
 

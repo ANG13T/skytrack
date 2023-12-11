@@ -159,6 +159,12 @@ class Aircraft:
         departure = " ".join(airports_info[:6])
         arrival = " ".join(airports_info[6:])
         return [date, departure, arrival, aircraft, duration]
+    
+    def parsed_flight_history(self):
+        hist = []
+        for log in self.History:
+            hist.append(self.parse_flight_log(log))
+        return hist
 
     def print_flight_history(self, history):
         table_title = f"Flight History for {self.Registration} ✈️"
