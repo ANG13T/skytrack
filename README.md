@@ -42,19 +42,22 @@ skytrack obtains general information about the aircraft given its tail number or
 The tool sources this information using several reliable data sets.
 Once the data is collected, it is displayed in the terminal within a table layout.
 
-<img alt="DroneXtract logo" height="300" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-1.png">
+<img alt="skytrack display" height="300" src="https://github.com/ANG13T/skytrack/blob/main/assets/data/display_1.png"> 
 
 
 ### PDF Aircraft Information Report
 skytrack also enables you the save the collected aircraft information into a PDF.
 The PDF includes all the aircraft data in a visual layout for later reference.
+The PDF report will be entitled "skytrack_report.pdf"
 
-<img alt="DroneXtract logo" height="300" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-2.png">
+<img alt="skytrack display" height="300" src="https://github.com/ANG13T/skytrack/blob/main/assets/data/display_2.png">
 
 ### Tail Number to ICAO Converter
 There are two standard identification formats for specifying aircraft: Tail Number and ICAO Designation. The tail number (aka N-Number) is an alphanumerical ID starting with the letter "N" used to identify aircraft. The ICAO type designation is a six-character fixed-length ID in the hexadecimal format. 
 Both standards are highly pertinent for aircraft reconnaissance as they both can be used to search for a specific aircraft in data sources.
 However, converting them from one format to another can be rather cumbersome as it follows a tricky algorithm. To streamline this process, skytrack includes a standard converter. 
+
+<img alt="skytrack display" height="150" src="https://github.com/ANG13T/skytrack/blob/main/assets/data/display_3.png">
 
 <details>
 <summary><bold>Further Explanation</bold></summary>
@@ -73,8 +76,6 @@ You can learn more about aircraft registration numbers [here](https://www.faa.go
 </details>
 
 > :warning:  Converter only works for USA-registered aircraft
-
-<img alt="DroneXtract logo" width="600" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-3.png">
 
 ## Data Sources & APIs Used
 [ICAO Aircraft Type Designators Listings](https://www.icao.int/publications/doc8643/pages/search.aspx)
