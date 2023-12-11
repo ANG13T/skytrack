@@ -5,8 +5,8 @@ skytrack is a command-line based plane spotting and aircraft OSINT reconnaissanc
 It can gather aircraft information using various data sources, generate a PDF report for a specified aircraft, and convert between ICAO and Tail Number designations. 
 Whether you are a hobbyist plane spotter or an experienced aircraft analyst, skytrack can help you identify and enumerate aircraft for general purpose reconnaissance.
 
-## What is Plane Spotting & Aircraft OSINT?
-Plane spotting is the art of 
+## What is Planespotting & Aircraft OSINT?
+Planespotting is the art of tracking down and observing aircraft. While planespotting mostly consists of photography and videography of aircraft, aircraft information gathering and OSINT is a crucial step in the planespotting process. OSINT (Open Source Intelligence) describes a methodology of using publicy accessible data sources to obtain data about a specific subject — in this case planes! 
 
 ## Aircraft Information 
 - Tail Number 🛫
@@ -43,7 +43,6 @@ The tool sources this information using several reliable data sets.
 Once the data is collected, it is displayed in the terminal within a table layout.
 
 <img alt="skytrack display" height="300" src="https://github.com/ANG13T/skytrack/blob/main/assets/data/display_1.png"> 
-
 
 ### PDF Aircraft Information Report
 skytrack also enables you the save the collected aircraft information into a PDF.
