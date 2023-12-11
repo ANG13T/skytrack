@@ -18,6 +18,17 @@ Plane spotting is the art of
 - Model 🛩
 - Much more!
 
+## Usage
+To run skytrack on your machine, follow the steps below:
+
+```bash
+$ git clone https://github.com/ANG13T/skytrack
+$ cd skytrack
+$ python skytrack.py
+```
+
+skytrack works best for Python version 3.
+
 ## Preview
 
 <img alt="skytrack preview" width="500" src="https://github.com/ANG13T/skytrack/blob/main/assets/data/skytrack_preview.png">
@@ -65,18 +76,6 @@ You can learn more about aircraft registration numbers [here](https://www.faa.go
 
 <img alt="DroneXtract logo" width="600" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/demo-3.png">
 
-
-## Usage
-To run skytrack on your machine, follow the steps below:
-
-```bash
-$ git clone https://github.com/ANG13T/skytrack
-$ cd skytrack
-$ python skytrack.py
-```
-
-skytrack works best for Python version 3.
-
 ## Data Sources & APIs Used
 [https://www.icao.int/publications/doc8643/pages/search.aspx](https://www.icao.int/publications/doc8643/pages/search.aspx)
 This is the most up to date JSON data file retrieved by the official ICAO Aircraft Type Designators listings webpage
@@ -96,7 +95,7 @@ wikipedia (done)
 opensky (done)
 
 ## Contributing
-DroneXtract is open to any contributions. Please fork the repository and make a pull request with the features or fixes you want to be implemented.
+skytrack is open to any contributions. Please fork the repository and make a pull request with the features or fixes you want to implement.
 
 ## Upcoming
 - Get latest flown airports
@@ -107,13 +106,10 @@ DroneXtract is open to any contributions. Please fork the repository and make a 
 - enter identifier of aircraft or registration or tail number
 
 ## Support
-If you enjoyed DroneXtract, please consider [becoming a sponsor](https://github.com/sponsors/ANG13T) in order to fund my future projects. 
+If you enjoyed skytrack, please consider [becoming a sponsor](https://github.com/sponsors/ANG13T) or donating on [buymeacoffee](https://www.buymeacoffee.com/angelinatsuboi) in order to fund my future projects. 
 
 To check out my other works, visit my [GitHub profile](https://github.com/ANG13T).
 
-
-TODO:
-- write README
+TODO
 - testing
-- make cool banner and icon
 - share on Linkedin, Reddit, GitHub, Twitter, and Discord
