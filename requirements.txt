@@ -1,0 +1,8 @@
+beautifulsoup4==4.12.2
+dateparser==1.1.8
+Jinja2==3.0.3
+pandas==2.0.3
+Requests==2.31.0
+rich==13.7.0
+selenium==4.16.0
+xhtml2pdf==0.2.13
