@@ -1,17 +1,14 @@
-
-
-## What is Plane Spotting?
-Plane spotting is the art of 
+<img alt="skytrack banner" width="700" src="https://github.com/ANG13T/skytrack/blob/main/assets/data/skytrack_banner.png">
 
 ## About
 skytrack is a command-line based plane spotting and aircraft OSINT reconnaissance tool made using Python.
 It can gather aircraft information using various data sources, generate a PDF report for a specified aircraft, and convert between ICAO and Tail Number designations. 
+Whether you are a hobbyist plane spotter or an experienced aircraft analyst, skytrack can help you identify and enumerate aircraft for general purpose reconnaissance.
 
-## Preview
+## What is Plane Spotting & Aircraft OSINT?
+Plane spotting is the art of 
 
-<img alt="DroneXtract logo" width="600" src="https://github.com/ANG13T/DroneXtract/blob/main/assets/Preview.png">
-
-## Information Gathered
+## Aircraft Information 
 - Tail Number 🛫
 - Aircraft Type ⚙️
 - ICAO24 Designation 🔎
@@ -20,6 +17,10 @@ It can gather aircraft information using various data sources, generate a PDF re
 - Aircraft Owner ✈️
 - Model 🛩
 - Much more!
+
+## Preview
+
+<img alt="skytrack preview" width="500" src="https://github.com/ANG13T/skytrack/blob/main/assets/data/skytrack_preview.png">
 
 ## Features
 DroneXtract features four main suites for drone forensics and auditing. They include the following:
