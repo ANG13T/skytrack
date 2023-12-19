@@ -42,10 +42,7 @@ def generate_suffix(offset):
     char0 = ALPHABET[int(int(offset - 1) / (len(ALPHABET) + 1))]
     mod = (offset - 1) % (len(ALPHABET) + 1)
 
-    if mod == 0:
-        return char0
-    
-    return char0 + ALPHABET[mod - 1]
+    return char0 if mod == 0 else char0 + ALPHABET[mod - 1]
 
 def compute_offset_from_suffix(suffix):
     """
@@ -145,20 +142,20 @@ def icao_to_tail(icao_value):
                 break
     if is_valid == False:
         return None
-    
+
     result = "N"
 
     i = int(icao_value[1:], base = 16) - 1
     if i < 0:
         return result
-    
+
     digit_1 = int(i / SEGMENT1_SIZE) + 1
     mod_1 = i % SEGMENT1_SIZE
     result += str(digit_1)
 
     if mod_1 < SUFFIX_SIZE:
         return result + generate_suffix(mod_1)
-    
+
     mod_1 -= SUFFIX_SIZE
     digit_2 = int(mod_1 / SEGMENT2_SIZE)
     mod_2 = mod_1 % SEGMENT2_SIZE
@@ -166,7 +163,7 @@ def icao_to_tail(icao_value):
 
     if mod_2 < SUFFIX_SIZE:
         return result + generate_suffix(mod_2)
-    
+
     mod_2 -= SUFFIX_SIZE
     digit_3 = int(mod_2 / SEGMENT3_SIZE)
     mod_3 = mod_2 % SEGMENT3_SIZE
@@ -174,16 +171,13 @@ def icao_to_tail(icao_value):
 
     if mod_3 < SUFFIX_SIZE:
         return result + generate_suffix(mod_3)
-    
+
     mod_3 -= SUFFIX_SIZE
     digit_4 = int(mod_3 / SEGMENT4_SIZE)
     mod_4 = mod_3 % SEGMENT4_SIZE
     result += str(digit_4)
 
-    if mod_4 == 0:
-        return result
-
-    return result + CHARACTERS[mod_4 - 1]
+    return result if mod_4 == 0 else result + CHARACTERS[mod_4 - 1]
 
     
 def print_icao_to_tail(icao_value):

@@ -127,29 +127,23 @@ class Aircraft:
         self.Arrival_Metar = arrival_metar
 
     def get_row_content(self, key, value):
-        if (not value == None) and len(value) > 0:
-            content = value
-            if str(value) == "false":
-                content = "Not Included"
-            elif str(value) == "true":
-                content = "Included"
-            return f"[b white]{key}[/]: [blue]{content} [/]"
-        else:
+        if value is None or len(value) <= 0:
             return ""
+        content = value
+        if str(content) == "false":
+            content = "Not Included"
+        elif str(content) == "true":
+            content = "Included"
+        return f"[b white]{key}[/]: [blue]{content} [/]"
 
     def get_flight_history(self, history):
-        if history == None or len(history) == 0:
-            return None
-        return history
+        return None if history is None or len(history) == 0 else history
 
     def get_flight_photos(self, photos):
-        if photos == None or len(photos) == 0:
+        if photos is None or len(photos) == 0:
             return None
 
-        if len(photos) > 1:
-            return "\n" + "\n".join(photos)
-        else:
-            return "\n" + photos[0]
+        return "\n" + "\n".join(photos) if len(photos) > 1 else "\n" + photos[0]
 
     def parse_flight_log(self, log):
         date = log[0]
@@ -161,10 +155,7 @@ class Aircraft:
         return [date, departure, arrival, aircraft, duration]
     
     def parsed_flight_history(self):
-        hist = []
-        for log in self.History:
-            hist.append(self.parse_flight_log(log))
-        return hist
+        return [self.parse_flight_log(log) for log in self.History]
 
     def print_flight_history(self, history):
         table_title = f"Flight History for {self.Registration} ✈️"
@@ -202,9 +193,8 @@ class Aircraft:
         table = Table(show_footer=False)
         table_centered = Align.left(table)
 
-        contents = []
+        contents = [self.get_row_content("ICAO24", self.ICAO24)]
 
-        contents.append(self.get_row_content("ICAO24", self.ICAO24))
         contents.append(self.get_row_content(
             "Registration", self.Registration))
         contents.append(self.get_row_content(
@@ -247,7 +237,7 @@ class Aircraft:
         contents.append(self.get_row_content("Wiki Link", self.Wiki_Link))
         contents.append(self.get_row_content(
             "Photos", self.get_flight_photos(self.Photos)))
-        
+
         with Live(table_centered, console=console,
                   screen=False):
             table.add_column(

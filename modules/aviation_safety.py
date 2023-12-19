@@ -15,8 +15,7 @@ def get_aviation_safety_data(tail_value):
     page = requests.get(updated_url)
     if page.status_code == 200:
         soup= BeautifulSoup(page.content, 'html.parser')
-        td  = soup.find('span', {'class': 'nobr'})
-        if td:
+        if td := soup.find('span', {'class': 'nobr'}):
             r   = requests.get('https://aviation-safety.net'+td.find('a')['href'])
             return r.url
             if r.status_code == 403:

@@ -105,15 +105,11 @@ def parse_past_flights(flights):
 
 
 def get_departure_airport(history):
-    if len(history) == 0:
-        return None
-    return history[0]
+    return None if len(history) == 0 else history[0]
 
 
 def get_arrival_airport(history):
-    if len(history) == 0:
-        return None
-    return history[len(history) - 1]
+    return None if len(history) == 0 else history[len(history) - 1]
 
 
 def parse_flight_telemetry(logs, arrival_data, departure_data):
@@ -139,10 +135,7 @@ def parse_flight_telemetry(logs, arrival_data, departure_data):
                     [arrival_data[0]] + logs[index + 4: index + 7])
 
             tracker += 1
-    final = []
-    for res in result:
-        if len(res) == 8:
-            final.append(res)
+    final = [res for res in result if len(res) == 8]
     output.telemetry = final
     return output
 
@@ -154,7 +147,7 @@ def parse_time(time_array):
 
 
 def parse_registration_information(titles, subtitles, table):
-    if table == None or len(table) == 0:
+    if table is None or len(table) == 0:
         return None
 
     table = table[0].text.strip()
@@ -167,7 +160,7 @@ def parse_registration_information(titles, subtitles, table):
         parsed_contents[index] = subtitles[index].text.strip()
     map = -1
     for item in table:
-        if item != "Date" and item != "Owner" and item != "Location":
+        if item not in ["Date", "Owner", "Location"]:
             if "Date" in item:
                 table_contents.append([])
                 map += 1
@@ -178,18 +171,26 @@ def parse_registration_information(titles, subtitles, table):
 
 
 def get_airport_code(airport):
-    if airport == None:
+    if airport is None:
         return None
-    for index, value in enumerate(airport):
-        if value == "-":
-            return airport[index + 1]
-    return None
+    return next(
+        (
+            airport[index + 1]
+            for index, value in enumerate(airport)
+            if value == "-"
+        ),
+        None,
+    )
 
 
 def get_airport_name(airport):
-    if airport == None:
+    if airport is None:
         return None
-    for index, value in enumerate(airport):
-        if len(value) == 3:
-            return airport[index + 1]
-    return None
+    return next(
+        (
+            airport[index + 1]
+            for index, value in enumerate(airport)
+            if len(value) == 3
+        ),
+        None,
+    )

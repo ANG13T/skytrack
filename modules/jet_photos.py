@@ -19,11 +19,5 @@ def get_jetphotos_data(tail_value):
     if len(images) == 0:
         return []
 
-    result = []
-    for image in images:
-        result.append("https:" + image['src'])
-
-    if len(result) > 3:
-        return result[:3]
-    else:
-        return result
+    result = ["https:" + image['src'] for image in images]
+    return result[:3] if len(result) > 3 else result

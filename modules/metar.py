@@ -11,10 +11,8 @@ URL = "https://aviationweather.gov/cgi-bin/data/metar.php?ids={}&date={}&format=
 
 
 def get_metar_data(airport_ident, time):
-    if airport_ident == None or time == None:
+    if airport_ident is None or time is None:
         return None
     updated_url = URL.format(airport_ident, time)
     page = requests.get(updated_url)
-    if page.status_code == 200:
-        return page.text
-    return None
+    return page.text if page.status_code == 200 else None

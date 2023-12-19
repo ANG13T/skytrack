@@ -22,7 +22,7 @@ try:
 
         option = generate_option(menu.options)
 
-        if option == None:
+        if option is None:
             rerun()
             return
 
