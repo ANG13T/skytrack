@@ -15,6 +15,8 @@ def aviationsafety(tail_n, is_verbose):
         if td := soup.find('span', {'class': 'nobr'}):
             r   = requests.get('https://aviation-safety.net'+td.find('a')['href'])
             return r.url
+            if r.status_code == 403:
+                return 'HTTP 403 while retriving incidents'
     return None
 
 
