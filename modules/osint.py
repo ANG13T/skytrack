@@ -26,7 +26,7 @@ def osint_from_tail(tail_value, pdf=False):
     # 7. Get METAR Information for both Arrival and Departure Airports
     with console.status("[white]Fetching data...[/white]") as status:
         icao = tail_to_icao(tail_value)
-        if not icao == None:
+        if icao is not None:
             icao == icao.upper()
         else:
             return

@@ -37,9 +37,7 @@ URL = "https://pkgstore.datahub.io/core/airport-codes/airport-codes/archive/dfad
 cache_path = format_file_name("./tmp/airports.cache")
 
 def retrieve_value(line, val):
-    if val <= len(line) - 1:
-        return line[val]
-    return None
+    return line[val] if val <= len(line) - 1 else None
 
 def get_airport_info(airport_ident, airport_name): 
     headers = {

@@ -66,9 +66,7 @@ cache_path = format_file_name("./tmp/opensky.cache")
 
 
 def retrieve_value(line, val):
-    if val <= len(line) - 1:
-        return line[val]
-    return None
+    return line[val] if val <= len(line) - 1 else None
 
 
 def get_opensky_data(aircraft, tail_value):
